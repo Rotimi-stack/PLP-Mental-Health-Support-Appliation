@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="registration-login-style.css">
+    <script src="registration-login-script"></script>
+</head>
+
+
+
+<body>
+
+    <section id="login">
+        <h2 class="login-heading">Login Form</h2>
+        <form action="submit_form.php" method="post" class="login-form" id="loginForm" novalidate>
+           
+            <label for="loginemail">Email:</label>
+            <input type="email" id="loginemail" name="loginemail" required placeholder="Enter your Email">
+
+            <label for="loginpassword">Password:</label>
+            <input type="password" id="loginpassword" name="loginpassword" required placeholder="Enter Password">
+
+
+            <button type="submit" class="login-button">Submit</button>
+        </form>
+</body>
+
+</html>
