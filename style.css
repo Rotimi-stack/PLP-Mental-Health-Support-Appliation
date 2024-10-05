@@ -75,6 +75,12 @@ nav ul li a {
     transition: transform 0.3s ease, color 0.3s ease; 
 }
 
+nav ul li a:hover {
+    animation: shake 0.5s forwards; /* Shake effect on hover */
+    color: darkgray; 
+    cursor: pointer; 
+}
+
 .social-media-icons {
     display: flex;
     margin-left: 10px;
@@ -95,15 +101,19 @@ nav ul li a {
 }
 
 .social-media-icons h2 {
-    font-size: 1.8rem; /* Heading font size */
-    font-weight: bold; /* Bold text */
-    font-family: 'Open Sans', sans-serif; /* Change font family */
-    font-style: italic; /* Change font style to italic */
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    font-family: 'Open Sans', sans-serif; 
+    font-style: italic; 
     color: White; 
     left: 85%;
     margin-top: 1rem;
     text-align: left;
     
+}
+
+.social-media-icons h2:hover {
+    animation: shake 0.5s forwards; 
 }
 
 
@@ -188,7 +198,8 @@ nav ul li a {
 
 .carousel-caption p {
     font-size: 1rem; /* Paragraph font size */
-    color: grey; /* Set paragraph color */
+    color: white; /* Set paragraph color */
+    font-weight: bold;
 }
 
 /* Carousel Controls */
@@ -203,6 +214,9 @@ nav ul li a {
     border-radius: 50%; /* Optional: Rounded controls */
 }
 
+.carousel-caption a.btn:hover {
+    animation: shake 0.5s forwards; /* Shake effect on hover */
+}
 
 
 
@@ -874,10 +888,10 @@ nav ul li a {
     width: 20%; 
     max-width: 500px; 
     text-align: center; 
-    background-color: lightgreen; 
+    background-color: rgb(243, 219, 199); 
     padding: 10px; 
     border-radius: 5px;
-    margin: 0 auto 20px auto; /* Center the div and add margin */
+    margin: 0 auto 20px auto; 
 }
 
 /* Blog heading styling */
@@ -1108,11 +1122,16 @@ h2 {
 }
 
 #check{
-    background-color: rgb(57, 120, 145);
+    background: rgba(29, 29, 119, 0.772);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .mood-slider {
     margin: 20px 0;
+}
+
+.mood-slider p {
+    font-weight: bold; /* Make text bold */
+    color: white; /* Optional: Set text color to white for better contrast */
 }
 
 .moodBarContainer {
@@ -1137,8 +1156,10 @@ input[type="range"] {
 
 .recommendation {
     margin-top: 10px; /* Space between bar and recommendation text */
-    font-size: 16px; /* Font size for recommendations */
+    font-size: 20px; /* Font size for recommendations */
     display: none; /* Hide by default */
+    font-weight: bold;
+    color:white;
 }
 
 
@@ -1148,7 +1169,7 @@ input[type="range"] {
     width: 18%; 
     max-width: 500px; 
     text-align: center; 
-    background-color: lightgreen; 
+    background-color: rgb(191, 153, 83); 
     padding: 10px; 
     border-radius: 5px;
     margin: 0 auto 20px auto; /* Center the div and add margin */
@@ -1168,7 +1189,7 @@ input[type="range"] {
 }
 
 #contact {
-    background:rgba(0, 0, 255, 0.772); 
+    background:rgba(3, 3, 44, 0.772); 
     color: #fff;            
     padding: 2rem;
     border-radius: 8px;
@@ -1305,7 +1326,7 @@ ul {
 footer {
     text-align: center;
     padding: 1rem;
-    background: #333;
+    background:rgba(0, 0, 255, 0.772);
     color: #fff;
     position: relative;
     bottom: 0;

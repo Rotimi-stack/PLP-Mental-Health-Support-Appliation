@@ -26,9 +26,12 @@ header {
     color: white; 
     font-weight: bold; 
     font-family: 'Open Sans', sans-serif; 
-    font-style: italic; 
+    font-style:italic; 
 }
 
+.social-media-icons a:hover {
+    animation: shake 0.5s; /* Apply shake animation for 0.5 seconds */
+}
 .nav-links {
     list-style: none;
     display: flex; 
@@ -48,12 +51,14 @@ header {
     font-style: italic; 
     text-decoration: none; 
     transition: transform 0.3s ease, color 0.3s ease; /* Transition effects */
+    
 }
 
 .nav-links a:hover {
-    transform: scale(1.1); /* Scale effect on hover */
+    animation: shake 0.5s forwards; /* Shake effect on hover */
     color: darkgray; /* Change color on hover */
 }
+
 
 /* Registration Section Styles */
 #registration {
@@ -63,6 +68,9 @@ header {
     background-repeat: no-repeat;
     padding: 60px 0 10px;
     color: white;
+}
+#registration:hover .contact-form {
+    animation: shake 0.5s forwards; 
 }
 
 /* Contact Form Styles */
@@ -144,8 +152,8 @@ header {
     max-width: 600px;
     margin: 30px auto; 
     padding: 1rem;   
-    background-color: rgb(73, 73, 133); 
-    border-radius: 20px; /* Adds rounded corners */   
+    background: rgba(2, 2, 113, 0.772);
+    border-radius: 20px;    
     min-height: 10px;          
     padding-top: 0%;         
 }
@@ -153,7 +161,7 @@ header {
 /* Input and Textarea Styling */
 #registration form input,
 #registration form textarea {
-    width: 90%;                    
+    width: 95%;                    
     padding: 0.75rem;               
     border: 1px solid #555;         
     border-radius: 4px;              
@@ -231,3 +239,14 @@ header {
     color: lightblue;  
     text-decoration: underline;
 }
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px, 0); }
+    50% { transform: translate(5px, 0); }
+    75% { transform: translate(-5px, 0); }
+    100% { transform: translate(0); }
+}
+
+
+
