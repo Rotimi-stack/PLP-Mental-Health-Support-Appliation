@@ -19,6 +19,8 @@ This project is a web-based chat application designed to provide mental health c
 - **JavaScript**: For adding interactivity and functionality to the chat feature.
 - **Bootstrap**: Used for responsive design and styling components.
 - **Font Awesome**: For adding scalable vector icons.
+- **MySql**: Database Technology.
+-**NodeJs**: For building Server side logic
 
 ## Installation
 ### Prerequisites
