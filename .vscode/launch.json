@@ -10,6 +10,7 @@
             "name": "Launch index.html directly",
             "url": "http://localhost:8080",
             "file": "${workspaceFolder}/index.html"
-        }
+        },
+    
     ]
 }

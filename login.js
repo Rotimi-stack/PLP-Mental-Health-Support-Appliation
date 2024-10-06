@@ -30,10 +30,14 @@ document.addEventListener('DOMContentLoaded', function () {
             if (password === "") {
                 displayError('loginpassword', 'Password is required');
                 valid = false;
+            } else if (password.length < 6) { // Example: Password must be at least 6 characters
+                displayError('loginpassword', 'Password must be at least 6 characters long');
+                valid = false;
             }
 
-            // If valid, submit the form (you can remove this preventDefault if actual form submission is desired)
+            // If valid, submit the form
             if (valid) {
+                // Optional: Display a success message or redirect here
                 loginForm.submit(); 
             }
         });
@@ -42,7 +46,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to display error messages
     function displayError(fieldId, message) {
         const errorDiv = document.getElementById(fieldId + '-error'); 
-        errorDiv.innerText = message; // Set the error message
+        if (errorDiv) { // Check if the errorDiv exists
+            errorDiv.innerText = message; // Set the error message
+            const field = document.getElementById(fieldId);
+            if (field) field.classList.add('is-invalid'); // Add class to highlight the field
+        }
     }
 
     // Function to clear error messages
@@ -50,6 +58,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const errorMessages = document.querySelectorAll('.error');
         errorMessages.forEach(function (msg) {
             msg.innerText = ''; // Clear the text of error messages
+        });
+        // Remove invalid field highlights
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(function (input) {
+            input.classList.remove('is-invalid'); // Remove invalid highlight
         });
     }
 });

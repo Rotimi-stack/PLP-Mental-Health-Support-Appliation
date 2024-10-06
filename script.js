@@ -33,7 +33,6 @@ window.onclick = function(event) {
     });
 };
 
-
 //----------------------------------------------------------------ARTICLE JS-------------------------
 let currentSlide = 0;
 const slides = document.querySelectorAll('.article-slide');
@@ -62,7 +61,7 @@ function changeSlide(direction) {
 
 // Function to reset automatic slide
 function resetAutoSlide() {
-    clearInterval(autoSlide); 
+    clearInterval(autoSlide);
     autoSlide = setInterval(() => {
         changeSlide(1);
     }, slideInterval);
@@ -70,7 +69,7 @@ function resetAutoSlide() {
 
 // Function to stop sliding
 function stopAutoSlide() {
-    clearInterval(autoSlide); 
+    clearInterval(autoSlide);
 }
 
 // Attach play event listeners to each iframe
@@ -89,8 +88,6 @@ slides.forEach((slide, index) => {
 
 // Start the automatic sliding
 resetAutoSlide();
-
-
 
 //**************************************************************CHECK SECTION**************************
 // Select all sliders and bars
@@ -112,43 +109,39 @@ function updateMood(slider, valueIndex) {
         moodBars[valueIndex].style.backgroundColor = 'green'; // Normal
         switch (valueIndex) {
             case 0: // Anger
-                recommendations[valueIndex].textContent = "You are doing just great, nothing to worry about."; // Updated recommendation
-                recommendations[valueIndex].style.display = "block"; 
+                recommendations[valueIndex].textContent = "You're doing just great, nothing to worry about.";
                 break;
             case 1: // Anxiety
-                recommendations[valueIndex].textContent = "Watch some cartoons and listen to some cool music; you are fine."; // Green
-                recommendations[valueIndex].style.display = "block"; 
+                recommendations[valueIndex].textContent = "Watch some cartoons and listen to cool music; you are fine.";
                 break;
             case 2: // Panic Attack
-                recommendations[valueIndex].textContent = "No cause for alarm, try dancing and reading some novels; you are fine."; // Green
-                recommendations[valueIndex].style.display = "block"; 
+                recommendations[valueIndex].textContent = "No cause for alarm, try dancing and reading novels; you are fine.";
                 break;
             case 3: // Depression
-                recommendations[valueIndex].textContent = "Nothing to worry about; life is full of challenges; you are handling it well."; // Green
-                recommendations[valueIndex].style.display = "block"; 
+                recommendations[valueIndex].textContent = "Nothing to worry about; life is full of challenges; you are handling it well.";
                 break;
             case 4: // Fear
-                recommendations[valueIndex].textContent = "Nothing to worry about; you are the boss; you’ve got it under control."; // Green
-                recommendations[valueIndex].style.display = "block"; 
+                recommendations[valueIndex].textContent = "Nothing to worry about; you’re the boss; you’ve got it under control.";
                 break;
         }
+        recommendations[valueIndex].style.display = "block"; 
     } else if (value >= 4 && value <= 7) {
         moodBars[valueIndex].style.backgroundColor = 'yellow'; // Warning
         switch (valueIndex) {
             case 0: // Anger
-                recommendations[valueIndex].textContent = "Don't think too much on the issue, engage your mind in positive things, try some exercise, and take a good nap."; // Default yellow recommendation
+                recommendations[valueIndex].textContent = "Don't think too much about the issue, engage in positive activities, try some exercise, and take a nap.";
                 break;
             case 1: // Anxiety
-                recommendations[valueIndex].textContent = "Try taking a break from what you are doing, drink some water, take a deep breath, take a stroll; you will be better."; // Yellow
+                recommendations[valueIndex].textContent = "Take a break, drink water, take a deep breath, and go for a stroll; you will feel better.";
                 break;
             case 2: // Panic Attack
-                recommendations[valueIndex].textContent = "Identify the trigger, reach out to a friend; don't be isolated, drink a lot of water, be calm."; // Yellow
+                recommendations[valueIndex].textContent = "Identify the trigger, reach out to a friend; don’t isolate yourself, drink water, and stay calm.";
                 break;
             case 3: // Depression
-                recommendations[valueIndex].textContent = "Take an extracurricular lesson; try dancing and hanging out with some friends."; // Yellow
+                recommendations[valueIndex].textContent = "Consider an extracurricular activity; try dancing or hanging out with friends.";
                 break;
             case 4: // Fear
-                recommendations[valueIndex].textContent = "Stand in the mirror, talk to yourself, motivate yourself, talk to a friend."; // Yellow
+                recommendations[valueIndex].textContent = "Stand in front of a mirror, talk to yourself, motivate yourself, and connect with a friend.";
                 break;
         }
         recommendations[valueIndex].style.display = "block"; // Show recommendation
@@ -156,19 +149,19 @@ function updateMood(slider, valueIndex) {
         moodBars[valueIndex].style.backgroundColor = 'red'; // Danger
         switch (valueIndex) {
             case 0: // Anger
-                recommendations[valueIndex].textContent = "Talk to a friend, reach out to a professional, don't make irrational decisions."; // Default red recommendation
+                recommendations[valueIndex].textContent = "Talk to a friend, reach out to a professional, and avoid irrational decisions.";
                 break;
             case 1: // Anxiety
-                recommendations[valueIndex].textContent = "Talk to someone close, don't stay in isolated areas, take a seat, call the medical hotline."; // Red
+                recommendations[valueIndex].textContent = "Talk to someone close, avoid isolation, and seek a safe place.";
                 break;
             case 2: // Panic Attack
-                recommendations[valueIndex].textContent = "Don't be isolated, call a friend or family member, be with a bottle of water, dial an emergency hotline, don't forget to keep breathing."; // Red
+                recommendations[valueIndex].textContent = "Stay connected, call a friend or family member, keep water close, and focus on breathing.";
                 break;
             case 3: // Depression
-                recommendations[valueIndex].textContent = "Don't be isolated, reach out to a family member, dial an emergency hotline."; // Red
+                recommendations[valueIndex].textContent = "Don't isolate yourself, reach out to a family member, and call emergency services if needed.";
                 break;
             case 4: // Fear
-                recommendations[valueIndex].textContent = "Don't be isolated, contact a friend or loved one, seek help, contact emergency services."; // Red
+                recommendations[valueIndex].textContent = "Don't isolate yourself; contact a friend, seek help, and reach out to emergency services if necessary.";
                 break;
         }
         recommendations[valueIndex].style.display = "block"; 
@@ -184,7 +177,6 @@ moodSliders.forEach((slider, index) => {
     updateMood(slider, index); // Set initial value
     slider.addEventListener('input', () => updateMood(slider, index)); // Update on input
 });
-
 
 //--------------------------------------------CHAT FEATURE------------------------------------------
 
@@ -219,8 +211,7 @@ document.getElementById("send-btn").addEventListener("click", function() {
         userMessageDiv.className = "user";
         chatBox.appendChild(userMessageDiv);
 
-      
-        chatInput.value = "";
+        chatInput.value = ""; // Clear input field
 
         // Simulate a bot response after a short delay
         setTimeout(() => {
