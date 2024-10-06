@@ -10,6 +10,7 @@ This project is a web-based chat application designed to provide mental health c
 - **Articles**: Access to Video Articles on mental illness and coping strategy
 - **Features**: Access to categories of Mental Illness resources based on diagnosis
 - **Self Check**: Acess to self check feature to enable users personally state how they feel, and recommendations are are suggested for the users based on how they are feeling.
+- **Paternership**: Enable Patnerships with consultants and health professionals by subscribing to become a MoodMate In-house consultant.
 - **Carousel Display**: Showcases mental health awareness content and services.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
