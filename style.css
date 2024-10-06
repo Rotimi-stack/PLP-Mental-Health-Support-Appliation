@@ -1143,8 +1143,8 @@ h2 {
 }
 .chat-icon i {
     color: black; 
-    font-size: 50px;
- }
+    font-size: 50px; 
+}
 
 
 .chat-icon i:hover {
@@ -1247,6 +1247,7 @@ h2 {
     background-color: grey; 
     transition: width 0.5s ease;
     border-radius: 10px; 
+}
 
 input[type="range"] {
     width: 100%; 
@@ -1282,7 +1283,7 @@ input[type="range"] {
 }
 
 .contact-heading-container:hover {
-    animation: shake 0.8s; 
+    animation: shake 0.8s; /* Apply the shake animation for 0.5 seconds */
     animation-timing-function:ease-in-out; /* Smooth animation */
 }
 
@@ -1430,3 +1431,4 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
