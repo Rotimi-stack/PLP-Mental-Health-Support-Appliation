@@ -57,21 +57,20 @@ function changeSlide(direction) {
     // Move the container to show the next slide
     articleContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    // Restart the automatic sliding
     resetAutoSlide();
 }
 
 // Function to reset automatic slide
 function resetAutoSlide() {
-    clearInterval(autoSlide); // Clear existing interval
+    clearInterval(autoSlide); 
     autoSlide = setInterval(() => {
-        changeSlide(1); // Change slide automatically every interval
+        changeSlide(1);
     }, slideInterval);
 }
 
 // Function to stop sliding
 function stopAutoSlide() {
-    clearInterval(autoSlide); // Stop automatic sliding
+    clearInterval(autoSlide); 
 }
 
 // Attach play event listeners to each iframe
@@ -114,23 +113,23 @@ function updateMood(slider, valueIndex) {
         switch (valueIndex) {
             case 0: // Anger
                 recommendations[valueIndex].textContent = "You are doing just great, nothing to worry about."; // Updated recommendation
-                recommendations[valueIndex].style.display = "block"; // Show recommendation
+                recommendations[valueIndex].style.display = "block"; 
                 break;
             case 1: // Anxiety
                 recommendations[valueIndex].textContent = "Watch some cartoons and listen to some cool music; you are fine."; // Green
-                recommendations[valueIndex].style.display = "block"; // Show recommendation
+                recommendations[valueIndex].style.display = "block"; 
                 break;
             case 2: // Panic Attack
                 recommendations[valueIndex].textContent = "No cause for alarm, try dancing and reading some novels; you are fine."; // Green
-                recommendations[valueIndex].style.display = "block"; // Show recommendation
+                recommendations[valueIndex].style.display = "block"; 
                 break;
             case 3: // Depression
                 recommendations[valueIndex].textContent = "Nothing to worry about; life is full of challenges; you are handling it well."; // Green
-                recommendations[valueIndex].style.display = "block"; // Show recommendation
+                recommendations[valueIndex].style.display = "block"; 
                 break;
             case 4: // Fear
                 recommendations[valueIndex].textContent = "Nothing to worry about; you are the boss; you’ve got it under control."; // Green
-                recommendations[valueIndex].style.display = "block"; // Show recommendation
+                recommendations[valueIndex].style.display = "block"; 
                 break;
         }
     } else if (value >= 4 && value <= 7) {
@@ -172,10 +171,10 @@ function updateMood(slider, valueIndex) {
                 recommendations[valueIndex].textContent = "Don't be isolated, contact a friend or loved one, seek help, contact emergency services."; // Red
                 break;
         }
-        recommendations[valueIndex].style.display = "block"; // Show recommendation
+        recommendations[valueIndex].style.display = "block"; 
     } else {
-        moodBars[valueIndex].style.backgroundColor = 'grey'; // Default color
-        recommendations[valueIndex].textContent = ""; // Clear previous recommendation
+        moodBars[valueIndex].style.backgroundColor = 'grey'; 
+        recommendations[valueIndex].textContent = ""; 
         recommendations[valueIndex].style.display = "none"; // Hide recommendation
     }
 }
@@ -184,4 +183,54 @@ function updateMood(slider, valueIndex) {
 moodSliders.forEach((slider, index) => {
     updateMood(slider, index); // Set initial value
     slider.addEventListener('input', () => updateMood(slider, index)); // Update on input
+});
+
+
+//--------------------------------------------CHAT FEATURE------------------------------------------
+
+// Event listener for the chat icon to toggle the chat container visibility
+document.getElementById("chat-icon").addEventListener("click", function() {
+    const chatContainer = document.getElementById("chat-container");
+    
+    // Toggle the chat container visibility
+    if (chatContainer.style.display === "none" || chatContainer.style.display === "") {
+        chatContainer.style.display = "block"; // Show the chat container
+    } else {
+        chatContainer.style.display = "none"; // Hide the chat container
+    }
+});
+
+// Event listener for the close button in the chat header
+document.getElementById("close-chat").addEventListener("click", function() {
+    document.getElementById("chat-container").style.display = "none"; 
+});
+
+// Event listener for sending a message
+document.getElementById("send-btn").addEventListener("click", function() {
+    const chatInput = document.getElementById("chat-input");
+    const chatBox = document.getElementById("chat-box");
+
+    const userMessage = chatInput.value.trim(); // Get the message and trim whitespaces
+
+    if (userMessage !== "") {
+       
+        const userMessageDiv = document.createElement("div");
+        userMessageDiv.textContent = userMessage;
+        userMessageDiv.className = "user";
+        chatBox.appendChild(userMessageDiv);
+
+      
+        chatInput.value = "";
+
+        // Simulate a bot response after a short delay
+        setTimeout(() => {
+            const botMessageDiv = document.createElement("div");
+            botMessageDiv.textContent = "Bot: " + userMessage; // Simulate a bot response
+            botMessageDiv.className = "bot";
+            chatBox.appendChild(botMessageDiv);
+
+            // Scroll to the bottom of the chat box
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+    }
 });
