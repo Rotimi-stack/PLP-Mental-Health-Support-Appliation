@@ -1,4 +1,4 @@
-# Mental Health Care Chat Application
+# MoodMate: Mental Health Care Support Application
 
 ## Description
 This project is a web-based chat application designed to provide mental health care support through real-time communication. The application allows users to engage with mental health professionals and receive assistance promptly. Users can book therapy and consultation sessions with consultants and experts at the click of a button.
