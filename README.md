@@ -6,6 +6,9 @@ This project is a web-based chat application designed to provide mental health c
 ## Features
 - **Real-time Chat**: Users can send and receive messages instantly.
 - **User-friendly Interface**: Simple and intuitive UI for easy interaction.
+- **Book Therapy and Consultation**: Schedule sessions with mental health consultants and experts easily.
+- **Articles**: Access to Video Articles on mental illness and coping strategy
+- **Features**:Access to categories of Mental Illness resources based on diagnosis
 - **Carousel Display**: Showcases mental health awareness content and services.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 
