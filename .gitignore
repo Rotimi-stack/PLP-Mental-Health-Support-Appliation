@@ -1,0 +1,7 @@
+.env
+
+
+# SSL certificates and private key
+cert.pem
+key.pem
+notepad.txt
