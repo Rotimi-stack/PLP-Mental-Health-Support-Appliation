@@ -145,7 +145,6 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem(responseKey, newResponseIndex);
     }
 
-
     moodSliders.forEach((slider, index) => {
         updateMood(slider, index);
         slider.addEventListener('input', () => updateMood(slider, index));
@@ -153,51 +152,8 @@ document.addEventListener("DOMContentLoaded", function () {
     /*#endregion*/
 
     /*#region CHAT FEATURE*/
-    async function sendToOpenAI(userMessage) {
-        try {
-            const apiKey = process.env.OPENAI_API_KEY; // Accessing the API key from environment variables
-
-            const response = await fetch('https://api.openai.com/v1/chat/completions', {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,  // Use the environment variable here
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    model: 'gpt-3.5-turbo',
-                    messages: [{ role: 'user', content: userMessage }],
-                }),
-            });
-            const data = await response.json();
-            console.log("API Response:", data); // Log the full response to inspect it
-
-            if (data.choices && data.choices[0] && data.choices[0].message) {
-                return data.choices[0].message.content; // Bot's reply
-            } else {
-                console.error("Unexpected API response format:", data);
-                return "Sorry, there was an error processing your request.";
-            }
-        } catch (error) {
-            console.error("Error calling OpenAI API:", error);
-            return "Sorry, there was an error connecting to the AI service.";
-        }
-    }
 
 
-    document.getElementById("send-btn").addEventListener("click", async () => {
-        const chatInput = document.getElementById("chat-input");
-        const userMessage = chatInput.value;
-
-        if (userMessage.trim()) {
-            chatInput.value = ""; // Clear the input field
-            const botResponse = await sendToOpenAI(userMessage);
-
-            if (botResponse) {
-                console.log(botResponse); // Log bot response
-                displayMessage(userMessage, botResponse); // Optional: Add this function to display messages
-            }
-        }
-    });
 
     // Get the chat input, chat box, and send button elements
     const chatInput = document.getElementById('chat-input');
@@ -209,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Define a function to generate a response based on the user's input
+
     // Define a function to generate a response based on the user's input
     function generateResponse(userMessage) {
         // Use 'userMessage' instead of 'message'
@@ -398,7 +354,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Tips to Overcome PTSD (Post-Traumatic Stress Disorder)
             {
-                keywords: ['tips to overcome PTSD', 'tip to overcome PTSD', ' overcome PTSD', 'how to overcome PTSD', 'clues to overcome PTSD', 'ways to overcome PTSD', 'routines to overcome PTSD'],
+                keywords: ['tips to overcome ptsd', 'tip to overcome PTSD', ' overcome PTSD', 'how to overcome PTSD', 'clues to overcome PTSD', 'ways to overcome PTSD', 'routines to overcome PTSD'],
                 response: "To manage PTSD, engage in grounding exercises, avoid alcohol or drugs, practice mindfulness, consider EMDR (Eye Movement Desensitization and Reprocessing) therapy, create a routine, and reach out for support from loved ones or professional counselors."
             },
 
@@ -502,7 +458,86 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 keywords: ['tips to overcome panic attacks', 'tip to overcome panic attacks', 'overcome panic attacks', 'how to overcome panic attacks', 'clues to overcome panic attacks', 'ways to overcome panic attacks', 'routines to overcome panic attacks'],
                 response: "To overcome panic attacks, practice deep breathing, mindfulness, and progressive muscle relaxation. Exposure therapy and Cognitive Behavioral Therapy (CBT) can help address the root cause, while grounding techniques and medication may also provide relief."
+            },
+
+            // General response for anxiety-related keywords
+
+            {
+                keywords: ['i have anxiety', 'i feel anxious', 'i look anxious', 'i am feeling anxious', 'i am nervous', 'i feel nervous', 'feeling anxious', 'having anxiety'],
+                response: "It's okay to feel anxious at times. Take deep breaths and try to relax. Distracting yourself with activities you love can be helpful. Remember, it's important to reach out to a professional if you're feeling overwhelmed."
+            },
+            {
+                keywords: ['i feel depressed', 'i have depression', 'feeling down', 'i feel hopeless', 'i am sad', 'i feel empty', 'i feel worthless', 'i am feeling hopeless'],
+                response: "I'm sorry you're feeling this way, but you're not alone. It's important to talk to someone you trust or seek professional help. In the meantime, try to engage in activities that bring you comfort and focus on small steps toward self-care."
+            },
+            // General response for PTSD-related keywords
+            {
+                keywords: ['i have PTSD', 'i feel triggered', 'i am scared', 'i am stressed', 'i feel unsafe', 'i have post-traumatic stress', 'having flashbacks'],
+                response: "It's okay to have reactions to traumatic experiences. Try grounding techniques or mindfulness exercises to help calm your mind. Please reach out to a mental health professional who can offer guidance and support."
+            },
+            {
+                keywords: [
+                    'how do i relax',
+                    'what do i need to do to relax',
+                    'what can relax me',
+                    'how can i manage stress',
+                    'what do i do when i am stressed',
+                    'how do should i sleep in a day to relax my nerves',
+                    'what can i do to sleep well',
+                    'how to reduce stress',
+                    'ways to relax',
+                    'tips for stress relief',
+                    'how to sleep better',
+                    'how to manage stress and anxiety'
+                ],
+                response: "To relax, try deep breathing exercises, mindfulness meditation, or progressive muscle relaxation. Consider regular physical exercise, reducing caffeine intake, and engaging in hobbies you enjoy. For stress management, adequate sleep, a balanced diet, and talking to a counselor can help. Also, ensure a calming bedtime routine to improve your sleep and relax your body."
+            },
+            {
+                keywords: [
+                    'stressed', 
+                    'i am stressing', 
+                    'today is stressful',
+                    'feeling stressed',
+                    'stressful day',
+                    'i feel overwhelmed',
+                    'under stress'
+                ],
+                response: "When you're feeling stressed, it's important to relax, prioritize your activities, and take quality rest in between. Break down tasks into manageable steps, and don't hesitate to take short breaks to clear your mind. Remember, taking time to unwind is just as important as getting things done."
+            },
+            {
+                keywords: [
+                    'abuse', 
+                    'domestic abuse', 
+                    'sexual abuse', 
+                    'assault', 
+                    'rape', 
+                    'molestation', 
+                    'violence', 
+                    'victim of abuse',
+                    'I was raped',
+                    'I was assaulted',
+                    'I was molested',
+                ],
+                response: "I'm really sorry you're going through this, but you're not alone. It's important to talk to someone you trust, whether it's a friend, family member, or counselor. You can also reach out to a professional hotline for immediate support at +333. Please take care of yourself and seek the help you deserve."
+            },
+            {
+                keywords: [
+                    'how can i overcome rape', 
+                    'how can i overcome domestic abuse', 
+                    'how can i overcome domestic violence', 
+                    'how to heal from rape', 
+                    'how to heal from domestic abuse', 
+                    'how to heal from domestic violence'
+                ],
+                response: "Overcoming trauma like rape, domestic abuse, or domestic violence can be incredibly challenging, but healing is possible. It’s important to seek professional support, such as therapy or counseling, to help you process your emotions and experiences. Connecting with support groups or talking to trusted friends and family can provide you with the strength and encouragement needed. Remember, you are not alone, and reaching out for help is a powerful first step towards healing. You deserve peace and safety."
             }
+            
+            
+            
+            
+
+
+
         ];
 
         // Search for the first matching response
