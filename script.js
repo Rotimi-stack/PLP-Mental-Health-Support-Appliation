@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+
     // Get all the modals
     var modals = document.querySelectorAll('.modal');
 
@@ -168,19 +169,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Define a function to generate a response based on the user's input
     function generateResponse(userMessage) {
+
+        if (userName === null) {
+            userName = userMessage;
+            return `Hello ${userName}, how can I assist you today?`;
+          } else {
+        
         // Use 'userMessage' instead of 'message'
         const normalizedMessage = userMessage.trim().toLowerCase();
 
         const responses = [
 
+            {
+                keywords: [
+                    'i dont know what to do',
+                    'what do you think i should do',
+                    'where do i go from here',
+                    'i cant take it anymore',
+                    'i want to give up',
+                    'i feel like ending it',
+                    'what do you think i should do i cant take it anymore'
+                ],
+                response: `
+                    I'm really sorry you're feeling this way. It can be incredibly challenging when you're unsure about what to do next or where to turn for help. Please know that you don't have to go through this alone.
+        
+                    It's completely okay to not have all the answers right now, and it's a brave first step to reach out. I would love to help guide you, but I’ll need a little more information to understand your situation better. Could you share a bit more about what you're going through? Whether it’s stress, anxiety, depression, or something else, I’m here to listen and offer the support I can.
+        
+                    If you're feeling overwhelmed or unsure of how to move forward, I strongly recommend reaching out to a professional. You can call our helpline at **[+234 7032482753]** for immediate support or book a therapy session through our platform. Speaking with a licensed therapist can really make a difference in helping you navigate these feelings and find clarity on your next steps.
+        
+                    You're not alone in this, and there is help available. Please take that next step toward healing, and don’t hesitate to reach out for support.
+                `
+            },
+
+
             // Greetings
-            { keywords: ['hi', 'hello', 'hey', 'greetings', 'yo'], response: "Hello there! How can I assist you today?" },
+            { keywords: ['hi', 'help','hello', 'hey', 'greetings', 'yo'], response: "Hello there! How can I assist you today?" },
             { keywords: ['good morning', 'good afternoon', 'good evening'], response: "Good day! Hope you're doing well!" },
 
             // Stress, anger, and bad moods
             { keywords: ['stress', 'stressed', 'overwhelmed', 'burnout'], response: "Take a moment to breathe deeply. Relax and focus on one thing at a time. You've got this." },
             { keywords: ['anger', 'angry', 'temper', 'bad mood'], response: "Be calm. Step away from the situation if possible. Reflect and respond thoughtfully." },
             { keywords: ['frustrated', 'irritated', 'annoyed'], response: "Frustration happens to all of us. Try taking a short walk or doing something relaxing." },
+
+          
+            {
+                keywords: [
+                    'ways to work on a stable mental health',
+                    'how to improve my mental health',
+                    'ways to maintain stable mental health',
+                    'how to maintain stable mental health',
+                    'how to balance my mental health',
+                    'how to keep my mental health in check'
+                ],
+                response: `
+                        Mental health is an important aspect of overall well-being. Here are some strategies to help you maintain and improve your mental health:
+            
+                        1. Regular Exercise : Engaging in physical activity like walking, jogging, or yoga helps release endorphins that boost mood and reduce stress.
+                        
+                        2. Balanced Diet : Eating a nutritious diet with a variety of vegetables, fruits, and healthy fats can have a positive impact on mental health by stabilizing blood sugar levels and boosting brain function.
+            
+                        3. Quality Sleep : Ensure you get adequate sleep, aiming for 7-9 hours per night. Poor sleep can contribute to mood swings and stress, while good sleep improves focus and emotional regulation.
+            
+                        4. Mindfulness and Meditation : Practices like mindfulness, meditation, or deep breathing exercises can help manage stress, improve focus, and increase emotional resilience.
+            
+                        5. Social Connections : Stay connected with friends, family, or support groups. Strong relationships are essential for emotional support and reducing feelings of loneliness.
+            
+                        6. Set Healthy Boundaries : Learn to say no and prioritize your well-being. Overcommitting can lead to burnout, while maintaining personal boundaries allows for better self-care.
+            
+                        7. Seek Professional Help When Needed : If you're feeling overwhelmed or experiencing signs of anxiety, depression, or stress, it’s important to reach out to a therapist or counselor who can help guide you through your emotions.
+            
+                        8. Engage in Hobbies and Interests : Taking time to do things you enjoy, such as reading, painting, or spending time in nature, can improve your mood and mental clarity.
+            
+                        9. Practice Gratitude: Focusing on the positive aspects of life can shift your mindset. Keeping a gratitude journal or simply taking a moment each day to reflect on the good things in your life can make a difference in your mental well-being.
+            
+                        10. Avoid Substance Abuse : Limit alcohol and drug consumption, as they can negatively impact mental health and create more stress.
+            
+                        It's important to make mental health a priority in your daily routine. Start with small steps and gradually build habits that contribute to a balanced and stable mind. Would you like more information on any of these strategies?
+                    `
+            },
 
             // Anxiety and nervousness
             { keywords: ['anxious', 'nervous', 'worried', 'apprehensive'], response: "It's okay to feel this way. Focus on your breathing and consider writing down your thoughts." },
@@ -205,14 +271,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // Relationships and social life
             {
                 keywords: [
-                    'how to cope with an abusive partner', 
+                    'how to cope with an abusive partner',
                     'how to cope with an abusive boyfriend',
                     'how to cope with an abusive girlfriend',
                     'how to cope with an abusive father',
                     'how to cope with an abusive mother',
-                    'how to cope with an abusive husband', 
-                    'how to cope with an abusive wife', 
-                    'cope with an abusive relationship', 
+                    'how to cope with an abusive husband',
+                    'how to cope with an abusive wife',
+                    'cope with an abusive relationship',
                     'violence in relationship',
                     'domestic violence in relationship',
                     'abusive relationship',
@@ -226,20 +292,20 @@ document.addEventListener("DOMContentLoaded", function () {
             // Career and work
             {
                 keywords: [
-                    'workplace stress', 
-                    'workplace harassment', 
-                    'workplace abuse', 
-                    'toxic workplace', 
-                    'hostile work environment', 
-                    'stressful work environment', 
-                    'bullying at work', 
-                    'discrimination at work', 
-                    'abuse of power at work', 
+                    'workplace stress',
+                    'workplace harassment',
+                    'workplace abuse',
+                    'toxic workplace',
+                    'hostile work environment',
+                    'stressful work environment',
+                    'bullying at work',
+                    'discrimination at work',
+                    'abuse of power at work',
                     'workplace violence'
                 ],
                 response: "Experiencing stress or harassment in the workplace can be incredibly challenging and affect your overall well-being. The first step is to acknowledge your feelings and understand that you are not at fault for the toxic environment or mistreatment. If possible, document instances of harassment or abuse and speak to a trusted HR representative or workplace counselor. Setting boundaries and seeking support from trusted colleagues, friends, or a therapist can also help you process these experiences. Remember, no one deserves to feel unsafe or unsupported at work, and you have the right to a respectful and healthy work environment. If you need additional guidance, there are organizations and hotlines that specialize in workplace rights and mental health support."
             },
-            
+
             { keywords: ['work', 'career', 'job', 'boss', 'colleague'], response: "Work stress is common. Break tasks into smaller parts and don't hesitate to ask for help." },
             { keywords: ['burnout', 'too much work', 'overworked'], response: "Take breaks, prioritize tasks, and set boundaries to avoid burnout." },
 
@@ -252,7 +318,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { keywords: ['sleep', 'rest', 'nap'], response: "Sleep is essential. Ensure you're getting enough to feel refreshed." },
 
             // Mental health resources
-            { keywords: ['what is mental health','define mental health','describe mental health'], response:"Mental health refers to your emotional, psychological, and social well-being. It affects how you think, feel, and behave in daily life, as well as how you handle stress, relate to others, and make decisions. Maintaining good mental health is as important as caring for your physical health. If you're looking for resources or support, we offer a variety of tools and guides in our features section to help you prioritize and improve your mental well-being."},
+            { keywords: ['what is mental health', 'define mental health', 'describe mental health'], response: "Mental health refers to your emotional, psychological, and social well-being. It affects how you think, feel, and behave in daily life, as well as how you handle stress, relate to others, and make decisions. Maintaining good mental health is as important as caring for your physical health. If you're looking for resources or support, we offer a variety of tools and guides in our features section to help you prioritize and improve your mental well-being." },
             { keywords: ['mental health', 'mental tips', 'trauma tips'], response: "We have great resources in our features section to help with mental health." },
             { keywords: ['therapy', 'psychologist', 'counseling'], response: "Seeking therapy is a great step. I can guide you to professional resources." },
 
@@ -528,8 +594,8 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             {
                 keywords: [
-                    'stressed', 
-                    'i am stressing', 
+                    'stressed',
+                    'i am stressing',
                     'today is stressful',
                     'feeling stressed',
                     'stressful day',
@@ -540,13 +606,13 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             {
                 keywords: [
-                    'abuse', 
-                    'domestic abuse', 
-                    'sexual abuse', 
-                    'assault', 
-                    'rape', 
-                    'molestation', 
-                    'violence', 
+                    'abuse',
+                    'domestic abuse',
+                    'sexual abuse',
+                    'assault',
+                    'rape',
+                    'molestation',
+                    'violence',
                     'victim of abuse',
                     'I was raped',
                     'I was assaulted',
@@ -556,18 +622,48 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             {
                 keywords: [
-                    'how can i overcome rape', 
-                    'how can i overcome domestic abuse', 
-                    'how can i overcome domestic violence', 
-                    'how to heal from rape', 
-                    'how to heal from domestic abuse', 
+                    'how can i overcome rape',
+                    'how can i overcome domestic abuse',
+                    'how can i overcome domestic violence',
+                    'how to heal from rape',
+                    'how to heal from domestic abuse',
                     'how to heal from domestic violence'
                 ],
                 response: "Overcoming trauma like rape, domestic abuse, or domestic violence can be incredibly challenging, but healing is possible. It’s important to seek professional support, such as therapy or counseling, to help you process your emotions and experiences. Connecting with support groups or talking to trusted friends and family can provide you with the strength and encouragement needed. Remember, you are not alone, and reaching out for help is a powerful first step towards healing. You deserve peace and safety."
+            },
+
+            {
+                keywords: [
+                    'what are the forms of relaxation',
+                    'form of relaxation',
+                    'kind of relaxation',
+                    'type of relaxation',
+                    'how to relax',
+                    'ways to relax',
+                    'relaxation techniques',
+                    'relaxation forms',
+                    'relaxation ways',
+                    'relaxation methods'
+                ],
+                response: `
+                     
+                    ${'1) Deep Breathing Exercises: Take slow, deep breaths to calm your nervous system.   '}
+                    ${'2) Progressive Muscle Relaxation: Tense and then release different muscle groups to relieve tension'}
+                       3) Mindfulness or Meditation: Practice being present in the moment through guided meditation or mindfulness apps.
+                       4) Listening to Music: Play soothing music that helps you unwind.
+                       5) Engage in a Hobby: Reading, painting, or gardening can be relaxing and enjoyable.
+                       6) Physical Activities: Gentle exercises like yoga, stretching, or walking can help reduce stress.
+                       7) Visualization: Imagine yourself in a peaceful place, like a beach or a forest.
+                       8) Take a Warm Bath: Adding essential oils like lavender can enhance relaxation.
+                       9) Aromatherapy: Use calming scents like lavender or chamomile to create a soothing atmosphere.
+                      10) Write in a Journal: Expressing thoughts and feelings can be therapeutic.
+            
+                    
+                    Try any of these and see which one works best for you. Would you like more details about any specific technique?
+                `
             }
            
-            
-            
+
 
         ];
 
@@ -581,37 +677,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Default response if no match is found
         return "I'm sorry, I don't have a response for that. Please try rephrasing your question or ask about a mental health topic.";
-    }
-
-
+    };
+}
 
 
 
     // Event listener for sending a message
+    let userName = null;
+
+    const defaultMessage = "What is your name?";
+    const botMessageDiv = document.createElement('div');
+    botMessageDiv.textContent = defaultMessage;
+    botMessageDiv.className = 'bot-message left';
+    chatBox.appendChild(botMessageDiv);
+    
     sendButton.addEventListener('click', function () {
-        const userMessage = chatInput.value.trim(); // Get the message and trim whitespaces
-
-        if (userMessage !== "") {
-            // Create a new div element to display the user's message
-            const userMessageDiv = document.createElement('div');
-            userMessageDiv.textContent = userMessage;
-            userMessageDiv.className = 'user-message right';
-            chatBox.appendChild(userMessageDiv);
-
-            // Generate a bot response
-            const botResponse = generateResponse(userMessage);
-
-            // Create a new div element to display the bot's response
-            const botMessageDiv = document.createElement('div');
-            botMessageDiv.textContent = botResponse;
-            botMessageDiv.className = 'bot-message left';
-            chatBox.appendChild(botMessageDiv);
-
-            chatInput.value = ''; // Clear input field
-            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom of the chat box
-        } else {
-            console.warn("User input is empty. Message not sent.");
-        }
+    const userMessage = chatInput.value.trim(); // Get the message and trim whitespaces
+    
+    if (userMessage !== "") { // Check if user input is not empty
+    if (userName === null) {
+    userName = userMessage;
+    const greeting = `Hello ${userName}, how can I assist you today?`;
+    const botMessageDiv = document.createElement('div');
+    botMessageDiv.textContent = greeting;
+    botMessageDiv.className = 'bot-message left';
+    chatBox.appendChild(botMessageDiv);
+    } else {
+    // Create a new div element to display the user's message
+    const userMessageDiv = document.createElement('div');
+    userMessageDiv.textContent = userMessage;
+    userMessageDiv.className = 'user-message right';
+    chatBox.appendChild(userMessageDiv);
+    
+      // Generate a bot response
+      const botResponse = generateResponse(userMessage);
+    
+      // Create a new div element to display the bot's response
+      const botMessageDiv = document.createElement('div');
+      botMessageDiv.textContent = botResponse;
+      botMessageDiv.className = 'bot-message left';
+      chatBox.appendChild(botMessageDiv);
+    }
+    
+    chatInput.value = ''; // Clear input field
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom of the chat box
+    
+    } else {
+    console.warn("User input is empty. Message not sent.");
+    }
     });
 
     document.getElementById("chat-icon").addEventListener("click", function () {
@@ -625,7 +738,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /*#endregion*/
-});
+})
+
 
 
 
