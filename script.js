@@ -179,6 +179,26 @@ document.addEventListener("DOMContentLoaded", function () {
         const normalizedMessage = userMessage.trim().toLowerCase();
 
         const responses = [
+            {
+                keywords: [
+                    'My mental health is disturbed i think i am slipping into depression',
+                    'i am slipping into panic attack',
+                    'i am slipping into anxiety',
+                    'i am slipping into depression',
+                    'i am slipping into panic attacks'
+                ],
+                response: `
+                    I'm really sorry you're feeling this way, and it's important to recognize when things feel overwhelming. It can be incredibly challenging to experience these emotions, and I want you to know that you're not alone.
+            
+                    Depression, anxiety, and panic attacks can feel intense and isolating, but there are steps you can take to regain a sense of control. First and foremost, it's okay to feel what you're feeling. Acknowledging it is the first step toward getting support.
+            
+                    It might help to take a moment to breathe deeply and focus on grounding yourself. However, these are difficult experiences, and it’s really important to talk to a professional who can help guide you through this.
+            
+                    Please consider reaching out to a therapist or counselor who can provide you with the tools and support needed to manage these emotions. You can call our helpline at [+234 7032482753] for immediate support or book a therapy session through our platform.
+            
+                    Remember, you're not alone, and there is help available. Taking that next step can be the start of feeling better, and we’re here to support you in any way we can.
+                `
+            },
 
             {
                 keywords: [
@@ -200,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     You're not alone in this, and there is help available. Please take that next step toward healing, and don’t hesitate to reach out for support.
                 `
             },
-
+          
 
             // Greetings
             { keywords: ['hi', 'help','hello', 'hey', 'greetings', 'yo'], response: "Hello there! How can I assist you today?" },
@@ -661,7 +681,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                     Try any of these and see which one works best for you. Would you like more details about any specific technique?
                 `
-            }
+            },
+            
            
 
 
@@ -685,7 +706,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener for sending a message
     let userName = null;
 
-    const defaultMessage = "What is your name?";
+    const defaultMessage = "Hello there! What is your name?";
     const botMessageDiv = document.createElement('div');
     botMessageDiv.textContent = defaultMessage;
     botMessageDiv.className = 'bot-message left';
