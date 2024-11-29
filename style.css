@@ -1368,6 +1368,20 @@ ul {
     /* Center and give space below */
 }
 
+.date {
+    position: absolute;
+    top: -8px;
+    left: 20px;
+    background-color: green;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    z-index: 1;
+
+
+}
+
 /* Styling for the testimonials heading */
 .testimonials-heading {
     font-size: 34px;
@@ -1433,6 +1447,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 /* Image Styling */
@@ -1516,7 +1531,7 @@ ul {
 .advert-slide img {
     width: 100%;
    
-    height: 200px;  /* Set height */
+    height: 210px;  /* Set height */
     object-fit: cover;  /* Ensure proper scaling */
     border-radius: 10px;
     object-fit: cover;
