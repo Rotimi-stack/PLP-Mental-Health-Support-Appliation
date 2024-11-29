@@ -731,8 +731,18 @@ ul {
     border-radius: 5px;
     /* Rounded corners */
     margin: 0 auto 20px auto;
+    animation: bounce 1s infinite;
 
 }
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
 
 .article-heading {
     font-size: 34px;
@@ -782,6 +792,7 @@ ul {
     margin-top: 10px;
     font-size: 1.1em;
     color: #333;
+    font-family: 'Lobster', cursive;
 }
 
 /* Navigation Buttons */
@@ -792,9 +803,10 @@ ul {
     transform: translateY(-50%);
     padding: 8px;
     font-size: 14px;
-    background-color: #000;
+    background-color: #129119;
     color: white;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
     z-index: 1;
 }
@@ -829,8 +841,18 @@ ul {
     padding: 2px;
     border-radius: 5px;
     margin: 0 auto 20px auto;
-}
+    animation: bounce 1s infinite;
 
+}
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
 .features-heading {
     font-size: 34px;
     margin: 0;

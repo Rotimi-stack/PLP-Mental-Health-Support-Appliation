@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const slides = document.querySelectorAll('.article-slide');
     const totalSlides = slides.length;
     const articleContainer = document.querySelector('.article-container');
-    const slideInterval = 18000;
+    const slideInterval = 30000;
     let autoSlide;
 
     function changeSlide(direction) {
