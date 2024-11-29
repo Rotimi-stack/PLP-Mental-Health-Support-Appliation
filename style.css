@@ -695,7 +695,7 @@ ul {
     color:#00307a;
     font-family: 'Lobster', cursive;
 }
-/*#endregion FUNFACT*
+/*#endregion FUNFACT*/
 
 /*#region***********************************************************************Updated Article Section************************************************** */
 
@@ -1961,6 +1961,21 @@ h2 {
 
 .mood-slider {
     margin: 20px 0;
+}
+.slider-instruction {
+   
+    font-weight: bold;
+    margin-bottom: 20px; /* Adds space below the instruction */
+    font-size: 1.2rem; /* Adjust font size for visibility */
+    color: white; /* Optional: Set text color */
+    width: 100%; /* Ensure it spans the full width of the parent container */
+    display: block; /* Ensures it's a block element */
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); } /* Start and end at original position */
+    50% { transform: translateY(-10px); } /* Move up */
 }
 
 .mood-slider p {

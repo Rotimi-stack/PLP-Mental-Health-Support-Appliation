@@ -195,7 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
             { keywords: ['tired', 'exhausted', 'fatigued'], response: "Fatigue can be tough. Rest well, stay hydrated, and prioritize self-care." },
 
             // Emergencies
-            { keywords: ['emergency', 'help', 'faint', 'fainting'], response: "Don't panic. Dial 222 for emergency responders or seek immediate help." },
+            { keywords: ['emergency', 'help', 'faint', 'fainting'], response: "Don't panic. Dial 222 for emergency responders or seek immediate help, you can also book a session with a terapist in the moodmate features section." },
             { keywords: ['out of breath', 'hard to breathe', 'choking'], response: "Stay calm. If you're in danger, contact emergency services immediately." },
 
             // Positive emotions
@@ -203,10 +203,43 @@ document.addEventListener("DOMContentLoaded", function () {
             { keywords: ['grateful', 'thankful', 'blessed'], response: "Gratitude is powerful. Celebrate the good things in your life." },
 
             // Relationships and social life
+            {
+                keywords: [
+                    'how to cope with an abusive partner', 
+                    'how to cope with an abusive boyfriend',
+                    'how to cope with an abusive girlfriend',
+                    'how to cope with an abusive father',
+                    'how to cope with an abusive mother',
+                    'how to cope with an abusive husband', 
+                    'how to cope with an abusive wife', 
+                    'cope with an abusive relationship', 
+                    'violence in relationship',
+                    'domestic violence in relationship',
+                    'abusive relationship',
+                    'partner violence'
+                ],
+                response: "Coping with an abusive relationship or partner is very difficult and can have lasting effects on your mental, emotional, and physical well-being. The first and most important step is to prioritize your safety. If you're in immediate danger, call emergency services or a local hotline. It's also crucial to confide in someone you trust, such as a close friend, family member, or counselor, who can support you. Remember that abuse is never your fault, and you deserve a healthy, respectful relationship. If possible, consider speaking to a professional about creating a safety plan and finding resources for leaving the abusive environment. You can also reach out to a trusted hotline for support at +333. You are not alone, and help is available."
+            },
             { keywords: ['relationship', 'partner', 'friend'], response: "Healthy relationships rely on communication and understanding. Let me know if you'd like tips." },
             { keywords: ['family issues', 'arguments', 'disagreement'], response: "Family issues can be challenging. Try to listen and express yourself calmly." },
 
             // Career and work
+            {
+                keywords: [
+                    'workplace stress', 
+                    'workplace harassment', 
+                    'workplace abuse', 
+                    'toxic workplace', 
+                    'hostile work environment', 
+                    'stressful work environment', 
+                    'bullying at work', 
+                    'discrimination at work', 
+                    'abuse of power at work', 
+                    'workplace violence'
+                ],
+                response: "Experiencing stress or harassment in the workplace can be incredibly challenging and affect your overall well-being. The first step is to acknowledge your feelings and understand that you are not at fault for the toxic environment or mistreatment. If possible, document instances of harassment or abuse and speak to a trusted HR representative or workplace counselor. Setting boundaries and seeking support from trusted colleagues, friends, or a therapist can also help you process these experiences. Remember, no one deserves to feel unsafe or unsupported at work, and you have the right to a respectful and healthy work environment. If you need additional guidance, there are organizations and hotlines that specialize in workplace rights and mental health support."
+            },
+            
             { keywords: ['work', 'career', 'job', 'boss', 'colleague'], response: "Work stress is common. Break tasks into smaller parts and don't hesitate to ask for help." },
             { keywords: ['burnout', 'too much work', 'overworked'], response: "Take breaks, prioritize tasks, and set boundaries to avoid burnout." },
 
@@ -219,7 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
             { keywords: ['sleep', 'rest', 'nap'], response: "Sleep is essential. Ensure you're getting enough to feel refreshed." },
 
             // Mental health resources
-            { keywords: ['mental health', 'mental tips', 'trauma tips'], response: "We have great resources in our mood slider to help with mental health." },
+            { keywords: ['what is mental health','define mental health','describe mental health'], response:"Mental health refers to your emotional, psychological, and social well-being. It affects how you think, feel, and behave in daily life, as well as how you handle stress, relate to others, and make decisions. Maintaining good mental health is as important as caring for your physical health. If you're looking for resources or support, we offer a variety of tools and guides in our features section to help you prioritize and improve your mental well-being."},
+            { keywords: ['mental health', 'mental tips', 'trauma tips'], response: "We have great resources in our features section to help with mental health." },
             { keywords: ['therapy', 'psychologist', 'counseling'], response: "Seeking therapy is a great step. I can guide you to professional resources." },
 
             // Gratitude and reflection
@@ -531,12 +565,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 ],
                 response: "Overcoming trauma like rape, domestic abuse, or domestic violence can be incredibly challenging, but healing is possible. It’s important to seek professional support, such as therapy or counseling, to help you process your emotions and experiences. Connecting with support groups or talking to trusted friends and family can provide you with the strength and encouragement needed. Remember, you are not alone, and reaching out for help is a powerful first step towards healing. You deserve peace and safety."
             }
+           
             
             
-            
-            
-
-
 
         ];
 
