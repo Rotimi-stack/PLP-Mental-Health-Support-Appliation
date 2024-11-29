@@ -377,7 +377,25 @@ nav ul li a:hover {
         transform: translateY(-10px);
     }
 }
+/* Center the brief-announcement at the bottom of the page */
+.brief-announcement {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%); /* Horizontally center */
+    text-align: center;
+    padding-bottom: 10px;
+   
+}
 
+/* Style the image to be rounded */
+.brief-announcement img {
+    width: 250px; /* Adjust width as needed */
+    height: 250px; /* Adjust height to maintain a square aspect ratio */
+    border-radius: 50%; /* This makes the image round */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    animation: bounce 2s infinite;
+}
 .centered-content p {
     line-height: 1.6;
     font-size: 16px;
@@ -388,6 +406,9 @@ nav ul li a:hover {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 1s ease-out, transform 1s ease-out;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px;
 }
 
 .brief.show {
