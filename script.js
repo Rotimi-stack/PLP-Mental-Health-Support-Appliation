@@ -788,153 +788,303 @@ document.addEventListener("DOMContentLoaded", function () {
     const allQuestions = [
         {
             question: "What is the most common mental health disorder?",
-            answers: ["Bipolar Disorder", "Anxiety Disorder", "Schizophrenia", "Obsessive Compulsive Disorder (OCD)"],
+            answers: [
+                '<i class="fas fa-frown"></i> Bipolar Disorder',
+                '<i class="fas fa-smile"></i> Anxiety Disorder',
+                '<i class="fas fa-question-circle"></i> Schizophrenia',
+                '<i class="fas fa-circle-notch"></i> Obsessive Compulsive Disorder (OCD)'
+            ],
             correctAnswer: "Anxiety Disorder"
         },
         {
             question: "What is the treatment for anxiety disorder?",
-            answers: ["Medication", "Therapy", "Rest", "Surgery"],
-            correctAnswer: "Therapy"
+            answers: [
+                "💊 Medication",
+                "🧠 Therapy", // Correct Answer
+                "😴 Rest",
+                "🔪 Surgery"
+            ],
+            correctAnswer: "🧠 Therapy"
         },
         {
             question: "What is PTSD?",
-            answers: ["Post Traumatic Stress Disorder", "Post Terminated Stress Disorder", "Public Trauma Stress Disorder", "Psychological Trauma Disorder"],
-            correctAnswer: "Post Traumatic Stress Disorder"
+            answers: [
+                "🛡️ Post Traumatic Stress Disorder", // Correct Answer
+                "📋 Post Terminated Stress Disorder",
+                "🏥 Public Trauma Stress Disorder",
+                "🧪 Psychological Trauma Disorder"
+            ],
+            correctAnswer: "🛡️ Post Traumatic Stress Disorder"
         },
         {
             question: "What are common symptoms of depression?",
-            answers: ["Fatigue", "Sadness", "Hopelessness", "All of the Above"],
-            correctAnswer: "All of the Above"
+            answers: [
+                "💤 Fatigue",
+                "😢 Sadness",
+                "😞 Hopelessness",
+                "🛑 All of the Above" // Correct Answer
+            ],
+            correctAnswer: "🛑 All of the Above"
         },
         {
             question: "Which of the following is a common anxiety disorder?",
-            answers: ["Social Anxiety Disorder", "OCD", "Generalized Anxiety Disorder", "All of the Above"],
-            correctAnswer: "All of the Above"
+            answers: [
+                "🤝 Social Anxiety Disorder",
+                "🔄 OCD",
+                "⚖️ Generalized Anxiety Disorder",
+                "🌟 All of the Above" // Correct Answer
+            ],
+            correctAnswer: "🌟 All of the Above"
         },
         {
             question: "What is the main goal of Cognitive Behavioral Therapy (CBT)?",
-            answers: ["Change negative thought patterns", "Help manage emotions", "Improve social skills", "Increase exercise"],
-            correctAnswer: "Change negative thought patterns"
+            answers: [
+                "💡 Change negative thought patterns", // Correct Answer
+                "💬 Help manage emotions",
+                "🤝 Improve social skills",
+                "🏃 Increase exercise"
+            ],
+            correctAnswer: "💡 Change negative thought patterns"
         },
         {
             question: "What is the best approach to manage panic attacks?",
-            answers: ["Breathing exercises", "Medication", "Therapy", "All of the Above"],
-            correctAnswer: "All of the Above"
+            answers: [
+                "🌬️ Breathing exercises",
+                "💊 Medication",
+                "🧠 Therapy",
+                "🌟 All of the Above" // Correct Answer
+            ],
+            correctAnswer: "🌟 All of the Above"
         },
         {
             question: "Which disorder is characterized by excessive worry?",
-            answers: ["Depression", "Anxiety Disorder", "Bipolar Disorder", "OCD"],
-            correctAnswer: "Anxiety Disorder"
+            answers: [
+                "😔 Depression",
+                "😟 Anxiety Disorder", // Correct Answer
+                "⚖️ Bipolar Disorder",
+                "🔄 OCD"
+            ],
+            correctAnswer: "😟 Anxiety Disorder"
         },
         {
             question: "What is the most common symptom of schizophrenia?",
-            answers: ["Hallucinations", "Memory loss", "Headaches", "Lack of motivation"],
-            correctAnswer: "Hallucinations"
+            answers: [
+                "👁️ Hallucinations", // Correct Answer
+                "🧠 Memory loss",
+                "🤕 Headaches",
+                "🚶 Lack of motivation"
+            ],
+            correctAnswer: "👁️ Hallucinations"
         },
         {
             question: "What is a common treatment for OCD?",
-            answers: ["Exposure Therapy", "Medication", "Behavioral Therapy", "All of the Above"],
-            correctAnswer: "All of the Above"
+            answers: [
+                "🔄 Exposure Therapy",
+                "💊 Medication",
+                "🧠 Behavioral Therapy",
+                "🌟 All of the Above" // Correct Answer
+            ],
+            correctAnswer: "🌟 All of the Above"
         },
         {
             question: "If you feel overwhelmed, what should you do?",
-            answers: ["Ignore it", "Speak to someone you trust", "Work harder to distract yourself", "Sleep it off"],
-            correctAnswer: "Speak to someone you trust"
+            answers: [
+                "❌ Ignore it",
+                "💬 Speak to someone you trust", // Correct Answer
+                "💻 Work harder to distract yourself",
+                "😴 Sleep it off"
+            ],
+            correctAnswer: "💬 Speak to someone you trust"
         },
         {
             question: "What should you do if you feel constantly sad and unmotivated?",
-            answers: ["Keep to yourself", "Seek professional help", "Wait for it to pass", "Avoid your feelings"],
-            correctAnswer: "Seek professional help"
+            answers: [
+                "🤐 Keep to yourself",
+                "🩺 Seek professional help", // Correct Answer
+                "⏳ Wait for it to pass",
+                "🚫 Avoid your feelings"
+            ],
+            correctAnswer: "🩺 Seek professional help"
         },
         {
             question: "If you feel out of breath during a panic attack, what should you do?",
-            answers: ["Breathe slowly and deeply", "Run away from the situation", "Take rapid breaths", "Ignore the feeling"],
-            correctAnswer: "Breathe slowly and deeply"
+            answers: [
+                "🌬️ Breathe slowly and deeply", // Correct Answer
+                "🏃‍♂️ Run away from the situation",
+                "💨 Take rapid breaths",
+                "❌ Ignore the feeling"
+            ],
+            correctAnswer: "🌬️ Breathe slowly and deeply"
         },
         {
             question: "If you are feeling tired all the time, what should you check first?",
-            answers: ["Your workload", "Your sleep patterns", "Your diet", "All of the above"],
-            correctAnswer: "All of the above"
+            answers: [
+                "📊 Your workload",
+                "🛏️ Your sleep patterns",
+                "🍔 Your diet",
+                "🛑 All of the above" // Correct Answer
+            ],
+            correctAnswer: "🛑 All of the above"
         },
         {
             question: "If you feel confused about your emotions, what is a good first step?",
-            answers: ["Journal your thoughts", "Ignore it", "Talk to a professional", "A and C"],
-            correctAnswer: "A and C"
+            answers: [
+                "📖 Journal your thoughts",
+                "🚫 Ignore it",
+                "🗣️ Talk to a professional",
+                "🅰️ A and C" // Correct Answer
+            ],
+            correctAnswer: "🅰️ A and C"
         },
         {
             question: "What should you do if you face domestic abuse?",
-            answers: ["Confront the abuser", "Seek immediate help from authorities or a trusted individual", "Stay silent to avoid conflict", "Try to handle it alone"],
-            correctAnswer: "Seek immediate help from authorities or a trusted individual"
+            answers: [
+                "⚔️ Confront the abuser",
+                "🆘 Seek immediate help from authorities or a trusted individual", // Correct Answer
+                "🤐 Stay silent to avoid conflict",
+                "💪 Try to handle it alone"
+            ],
+            correctAnswer: "🆘 Seek immediate help from authorities or a trusted individual"
         },
         {
             question: "How should you respond to violence in your environment?",
-            answers: ["Avoid reporting it", "Seek help and report to the proper authorities", "Engage in the violence", "Ignore the situation"],
-            correctAnswer: "Seek help and report to the proper authorities"
+            answers: [
+                "🙉 Avoid reporting it",
+                "🆘 Seek help and report to the proper authorities", // Correct Answer
+                "👊 Engage in the violence",
+                "🚶‍♂️ Ignore the situation"
+            ],
+            correctAnswer: "🆘 Seek help and report to the proper authorities"
         },
         {
             question: "What should you do if you experience a toxic work environment?",
-            answers: ["Report to HR or management", "Quit immediately", "Confront coworkers aggressively", "Ignore the toxicity"],
-            correctAnswer: "Report to HR or management"
+            answers: [
+                "📢 Report to HR or management", // Correct Answer
+                "🚪 Quit immediately",
+                "😡 Confront coworkers aggressively",
+                "🚫 Ignore the toxicity"
+            ],
+            correctAnswer: "📢 Report to HR or management"
         },
         {
             question: "What is the best way to deal with chronic stress?",
-            answers: ["Practice relaxation techniques", "Avoid talking about it", "Ignore the stressors", "Work harder"],
-            correctAnswer: "Practice relaxation techniques"
+            answers: [
+                "🧘‍♂️ Practice relaxation techniques", // Correct Answer
+                "🚫 Avoid talking about it",
+                "❌ Ignore the stressors",
+                "💪 Work harder"
+            ],
+            correctAnswer: "🧘‍♂️ Practice relaxation techniques"
         },
         {
             question: "If you feel isolated, what should you do?",
-            answers: ["Connect with friends or family", "Stay alone", "Delete social media", "Avoid interaction altogether"],
-            correctAnswer: "Connect with friends or family"
+            answers: [
+                "🤝 Connect with friends or family", // Correct Answer
+                "🚶‍♂️ Stay alone",
+                "❌ Delete social media",
+                "🚫 Avoid interaction altogether"
+            ],
+            correctAnswer: "🤝 Connect with friends or family"
         },
         {
             question: "What is a healthy way to cope with depression?",
-            answers: ["Exercise regularly", "Keep feelings bottled up", "Avoid seeking help", "Ignore it"],
-            correctAnswer: "Exercise regularly"
+            answers: [
+                "🏃‍♂️ Exercise regularly", // Correct Answer
+                "🤐 Keep feelings bottled up",
+                "❌ Avoid seeking help",
+                "🚫 Ignore it"
+            ],
+            correctAnswer: "🏃‍♂️ Exercise regularly"
         },
         {
             question: "If you feel like harming yourself, what should you do?",
-            answers: ["Talk to a trusted person immediately", "Ignore the feeling", "Act on it", "Isolate yourself"],
-            correctAnswer: "Talk to a trusted person immediately"
+            answers: [
+                "🗣️ Talk to a trusted person immediately", // Correct Answer
+                "❌ Ignore the feeling",
+                "🚫 Act on it",
+                "🚪 Isolate yourself"
+            ],
+            correctAnswer: "🗣️ Talk to a trusted person immediately"
         },
         {
             question: "What is a good way to handle feeling mentally exhausted?",
-            answers: ["Take a break and practice self-care", "Push through it", "Sleep for long hours", "Ignore the feeling"],
-            correctAnswer: "Take a break and practice self-care"
+            answers: [
+                "🛋️ Take a break and practice self-care", // Correct Answer
+                "💪 Push through it",
+                "💤 Sleep for long hours",
+                "🚫 Ignore the feeling"
+            ],
+            correctAnswer: "🛋️ Take a break and practice self-care"
         },
         {
             question: "What should you do if you’re experiencing sleep problems?",
-            answers: ["Maintain a consistent sleep schedule", "Drink coffee to stay awake", "Keep your phone close", "Sleep irregularly"],
-            correctAnswer: "Maintain a consistent sleep schedule"
+            answers: [
+                "⏰ Maintain a consistent sleep schedule", // Correct Answer
+                "☕ Drink coffee to stay awake",
+                "📱 Keep your phone close",
+                "🌙 Sleep irregularly"
+            ],
+            correctAnswer: "⏰ Maintain a consistent sleep schedule"
         },
         {
             question: "If you’re feeling angry frequently, what is a healthy coping mechanism?",
-            answers: ["Practice breathing exercises", "Suppress your anger", "Take it out on others", "Ignore it"],
-            correctAnswer: "Practice breathing exercises"
+            answers: [
+                "🌬️ Practice breathing exercises", // Correct Answer
+                "🤐 Suppress your anger",
+                "👊 Take it out on others",
+                "🚫 Ignore it"
+            ],
+            correctAnswer: "🌬️ Practice breathing exercises"
         },
         {
             question: "What should you do if you feel anxious in social settings?",
-            answers: ["Avoid social interactions entirely", "Take small steps and practice exposure", "Overthink your actions", "Pretend to be okay"],
-            correctAnswer: "Take small steps and practice exposure"
+            answers: [
+                "🚫 Avoid social interactions entirely",
+                "🪜 Take small steps and practice exposure", // Correct Answer
+                "🤯 Overthink your actions",
+                "🎭 Pretend to be okay"
+            ],
+            correctAnswer: "🪜 Take small steps and practice exposure"
         },
         {
             question: "What is a helpful response to a friend expressing suicidal thoughts?",
-            answers: ["Take them seriously and seek professional help", "Tell them to get over it", "Ignore their concerns", "Change the topic"],
-            correctAnswer: "Take them seriously and seek professional help"
+            answers: [
+                "🆘 Take them seriously and seek professional help", // Correct Answer
+                "🚫 Tell them to get over it",
+                "❌ Ignore their concerns",
+                "❓ Change the topic"
+            ],
+            correctAnswer: "🆘 Take them seriously and seek professional help"
         },
         {
             question: "What is the first thing you should do if you experience a sudden trauma?",
-            answers: ["Seek immediate support", "Keep it to yourself", "Distract yourself with work", "Avoid the topic"],
-            correctAnswer: "Seek immediate support"
+            answers: [
+                "🆘 Seek immediate support", // Correct Answer
+                "🤐 Keep it to yourself",
+                "💻 Distract yourself with work",
+                "🚫 Avoid the topic"
+            ],
+            correctAnswer: "🆘 Seek immediate support"
         },
         {
             question: "What should you do if you constantly worry about the future?",
-            answers: ["Practice mindfulness and grounding techniques", "Focus only on the negative outcomes", "Avoid thinking about it", "Seek professional advice"],
-            correctAnswer: "Practice mindfulness and grounding techniques"
+            answers: [
+                "🧘‍♂️ Practice mindfulness and grounding techniques", // Correct Answer
+                "⚠️ Focus only on the negative outcomes",
+                "🚫 Avoid thinking about it",
+                "👨‍⚕️ Seek professional advice"
+            ],
+            correctAnswer: "🧘‍♂️ Practice mindfulness and grounding techniques"
         },
         {
             question: "How should you handle a friend going through a tough time?",
-            answers: ["Listen without judgment", "Give them space", "Ignore them", "All of the above"],
-            correctAnswer: "All of the above"
+            answers: [
+                "👂 Listen without judgment", // Correct Answer
+                "⛔ Give them space",
+                "🚫 Ignore them",
+                "🛑 All of the above"
+            ],
+            correctAnswer: "🛑 All of the above"
         }
     ];
 
