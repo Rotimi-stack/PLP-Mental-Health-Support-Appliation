@@ -1628,6 +1628,15 @@ ul {
     z-index: 100; /* Keep it above other elements */
     animation: slideAcross 5s linear infinite; /* Define the animation */
 }
+.advert-gif1 {
+    position: fixed; /* Keep it fixed relative to the screen */
+    top: 55px; /* Adjust the vertical position from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset to center relative to its width */
+    width: 150px; /* Set the appropriate width */
+    z-index: 101; /* Ensure it appears above other elements */
+}
+
 
 /* Keyframes for sliding */
 @keyframes slideAcross {
