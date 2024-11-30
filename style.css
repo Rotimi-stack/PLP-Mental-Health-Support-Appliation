@@ -1448,6 +1448,8 @@ ul {
     flex-direction: column;
     align-items: center;
     position: relative;
+    overflow: visible;
+    padding-bottom: 150px;
 }
 
 /* Image Styling */
@@ -1465,9 +1467,21 @@ ul {
 
 /* Testimonials Text */
 .testimonials-text {
+    position: absolute;
+    top: 0;
+    left: 10;
+    width: 80%;
+    background-color: white;
+    color: Black;
+    padding: 10px;
     text-align: center;
-    margin-top: 10px;
+    border-radius: 10px;
+    transform: translateY(170px);
+    height: auto;
+    /* Automatically adjusts height to content */
+    min-height: auto;
 }
+
 
 .testimonials-text h3 {
     margin: 0;
@@ -1502,9 +1516,10 @@ ul {
 /* General styling for the advert section */
 #advert-section {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 50px;
     padding: 20px;
     background-color: #f9f9f9;
+    overflow: hidden; /* Ensure no spilling outside */
 }
 
 #advert-section h2 {
@@ -1520,6 +1535,8 @@ ul {
     flex-wrap: wrap;
     gap: 20px;
     margin: 0 auto;
+    padding: 10px;
+    max-width: 1200px; /* Prevents excessive stretching of content */
 }
 
 .advert-slide {
@@ -1527,6 +1544,8 @@ ul {
     max-width: 250px;
     text-align: center;
 }
+
+
 
 .advert-slide img {
     width: 100%;
@@ -1562,7 +1581,64 @@ ul {
     }
 
     .advert-slide {
-        max-width: 90%;
+        width: 100%;
+        max-width: 250px;
+        text-align: center;
+    }
+}
+
+/* Advert Section Styling */
+.advert-box {
+    width: 250px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding fits within the box */
+}
+
+.advert-box img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+}
+
+.advert-text {
+    padding: 10px 15px;
+    text-align: center;
+}
+
+.advert-text p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.advert-gif {
+    position: fixed; /* Make sure the GIF is fixed to the screen */
+    top: 400px;
+    left: 0; /* Start from the left */
+    width: 150px; /* Set an appropriate size for the GIF */
+    z-index: 100; /* Keep it above other elements */
+    animation: slideAcross 5s linear infinite; /* Define the animation */
+}
+
+/* Keyframes for sliding */
+@keyframes slideAcross {
+    0% {
+        transform: translate(-150px, -50px); /* Start off the screen from the left */
+    }
+    50% {
+        transform: translate(calc(100vw - 150px), -50px); /* Center the GIF while moving right */
+    }
+    100% {
+        transform: translate(100vw, -50px); /* Exit off the screen to the right */
     }
 }
 
