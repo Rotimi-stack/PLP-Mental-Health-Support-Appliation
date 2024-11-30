@@ -2159,8 +2159,48 @@ input[type="range"] {
     /* Semi-transparent background */
     border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    color: white;
+    color: black;
 }
+
+/* Style for the buttons */
+.answer-btn {
+    background-color: darkgrey; /* Dark grey color */
+    color: white; /* Text color */
+    border: none; /* Remove the default border */
+    padding: 10px 20px; /* Add padding for size */
+    margin: 5px 0; /* Add vertical space between buttons */
+    border-radius: 8px; /* Curved edges */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+/* Style for buttons on hover */
+.answer-btn:hover {
+    background-color: #555; /* Slightly lighter grey when hovered */
+}
+
+/* Style for buttons when clicked (active state) */
+.answer-btn:active {
+    background-color: blue; /* Blue color when clicked */
+    transform: scale(0.98); /* Slight shrink effect */
+}
+#refresh-questions-btn{
+    border-radius: 8px;
+    background-color:rgb(59, 179, 59);
+    padding: 5px 10px;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.wrong {
+    color: red;
+    font-weight: bold;
+}
+
 
 .recording-container button {
     padding: 10px 20px;
@@ -2246,12 +2286,20 @@ input[type="range"] {
 }
 
 .ranger-gif {
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;  /* Makes the GIF round */
     object-fit: cover;  /* Ensures the GIF covers the entire area */
     margin: 10px;  /* Add some spacing around the GIFs */
     animation: bounce 2s infinite ease-in-out;
+    
+}
+
+@media (max-width: 768px) {
+    .ranger-gif {
+        width: 100%;  /* Allow the GIF to take up full width on smaller screens */
+        max-width: 100%; /* Remove max-width restriction on small screens */
+    }
 }
 
 /* Bouncing keyframes animation */
