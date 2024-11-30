@@ -80,6 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
         slide.style.transform = `translateX(${index * 100}%)`;
     });
 
+    document.querySelector('.prev').addEventListener('click', () => changeSlide(-1));
+    document.querySelector('.next').addEventListener('click', () => changeSlide(1));
+    
+
     resetAutoSlide();
     /*#endregion*/
 
@@ -789,13 +793,14 @@ document.addEventListener("DOMContentLoaded", function () {
         {
             question: "What is the most common mental health disorder?",
             answers: [
-                '<i class="fas fa-frown"></i> Bipolar Disorder',
-                '<i class="fas fa-smile"></i> Anxiety Disorder',
-                '<i class="fas fa-question-circle"></i> Schizophrenia',
-                '<i class="fas fa-circle-notch"></i> Obsessive Compulsive Disorder (OCD)'
+                "😞 Bipolar Disorder",
+                "😊 Anxiety Disorder", // Correct Answer
+                "❓ Schizophrenia",
+                "🔄 Obsessive Compulsive Disorder (OCD)"
             ],
-            correctAnswer: "Anxiety Disorder"
+            correctAnswer: "😊 Anxiety Disorder"
         },
+        
         {
             question: "What is the treatment for anxiety disorder?",
             answers: [
