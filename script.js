@@ -1089,7 +1089,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "🚫 Ignore them",
                 "🛑 All of the above"
             ],
-            correctAnswer: "🛑 All of the above"
+            correctAnswer: "👂 Listen without judgment"
         }
     ];
 
