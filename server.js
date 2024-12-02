@@ -21,23 +21,24 @@ const RedisStore = require('connect-redis')(session);
 const redis = require('redis');
 
 
-
-
 // Initialize the GoogleGenerativeAI instance with your API key
 const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
 
 
+const client = redis.createClient({ 
+  url: process.env.REDIS_URL || 'redis://localhost:6379' 
+});
+
 const redisClient = redis.createClient({ url: process.env.REDIS_URL });
 redisClient.connect().catch(console.error);
 
 app.use(session({
-    store: new RedisStore({ client: redisClient }),
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'default-secret',  // Fallback to a default if not set
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: true }
-}));
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === 'production' }  // Ensure the cookie is secure in production
+  }));
 
 
 
