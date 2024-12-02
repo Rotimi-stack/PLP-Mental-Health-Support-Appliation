@@ -17,29 +17,33 @@ const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const mime = require('mime-types');
 const PORT = process.env.PORT || 3000;
-const redis = require('redis');
-const RedisStore = require('connect-redis')(session);
-
-
-
 // Initialize the GoogleGenerativeAI instance with your API key
 const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
 
 
-const client = redis.createClient({ 
-  url: process.env.REDIS_URL || 'redis://localhost:6379' 
+const redis = require('redis');
+const { createClient } = require('redis');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+
+const client = createClient({
+  legacyMode: true,
+  url: process.env.REDIS_URL || 'redis://localhost:6379',
 });
 
-const redisClient = redis.createClient({ url: process.env.REDIS_URL });
-redisClient.connect().catch(console.error);
+client.connect().catch(console.error);
 
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'default-secret',  // Fallback to a default if not set
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: process.env.NODE_ENV === 'production' }  // Ensure the cookie is secure in production
-  }));
+  store: new RedisStore({ client }),
+  secret: process.env.SESSION_SECRET || 'default-secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production'
+  }
+}));
+
 
 
 
