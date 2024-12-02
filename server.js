@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-const https = require('https');
+const http = require('http');
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
@@ -16,6 +16,8 @@ const session = require('express-session');//Session Management
 const SECRET_KEY = process.env.JWT_SECRET; 
 const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
+const mime = require('mime-types');
+
 
 
 
@@ -61,13 +63,34 @@ app.use((req, res, next) => {
   
 
 
-// Load SSL certificate and key from environment variables
-const options = {
-    key: fs.readFileSync(path.resolve(__dirname, process.env.SSL_KEY_PATH)), // Dynamic path from .env
-    cert: fs.readFileSync(path.resolve(__dirname, process.env.SSL_CERT_PATH)) 
+/*Load SSL certificate and key from environment variables
+let options;
+const key = process.env.SSL_KEY_CONTENT;
+const cert = process.env.SSL_CERT_CONTENT;
+
+console.log('SSL_KEY_CONTENT:', process.env.SSL_KEY_CONTENT);
+console.log('SSL_CERT_CONTENT:', process.env.SSL_CERT_CONTENT);
+
+
+if (key && cert) {
+  const options = {
+    key,
+    cert,
+    ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256',
   };
 
+  https.createServer(options, app).listen(3000, () => {
+    console.log('HTTPS Server running on https://localhost:3000');
+  });
+} else {
+  console.error('Error: Key and certificate are not provided.');
+  process.exit(1);
+}*/
 
+
+
+ 
+  
 //authentication middleare that performs validation of the token
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -529,10 +552,24 @@ app.put('/update-admin/:id', (req, res) => {
 
 
 
+/*http.createServer((req, res) => {
+    const filePath = `.${req.url}`;
+    const mimeType = mime.lookup(filePath);
+  
+    fs.readFile(filePath, (err, data) => {
+      if (err) {
+        res.writeHead(404, {'Content-Type': 'text/plain'});
+        res.end('File not found!');
+      } else {
+        res.writeHead(200, {'Content-Type': mimeType || 'text/plain'});
+        res.end(data);
+      }
+    });
+  }).listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+  });*/
+  
 
-
-
-// Create HTTPS server
-https.createServer(options, app).listen(3000, () => {
-    console.log('HTTPS Server running on https://localhost:3000');
-  });
+  app.listen(3000, () => {
+    console.log('Server is running on https://localhost:3000/index');
+});
