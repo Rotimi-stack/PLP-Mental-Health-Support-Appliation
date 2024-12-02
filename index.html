@@ -32,11 +32,11 @@
         <nav>
             <ul>
                 <li><a href="#about">About Us</a></li>
+                <li><a href="#check">Self-Check</a></li>
                 <li><a href="#article">Article</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#blog-carousel">Blog</a></li>
-                <li><a href="#check">Self-Check</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -223,7 +223,7 @@
 
     <!-- #endregion-->
 
-  <!--#region CHECK SECTION-->
+    <!--#region CHECK SECTION-->
     <!----------------------------------------------------------------CHECK SECTION--------------------------------------------------->
     <section id="check">
         <div class="check-heading-container">
@@ -291,7 +291,8 @@
 
                 <div class="mood-input-container">
                     <label for="mood-input">Input Your Mood:</label>
-                    <input type="text" id="mood-input" placeholder="e.g., I feel overwhelmed with work, what should i do?" />
+                    <input type="text" id="mood-input"
+                        placeholder="e.g., I feel overwhelmed with work, what should i do?" />
                     <button id="send-mood-btn">Send</button>
                 </div>
                 <div class="response-container" id="response-container">
@@ -305,12 +306,11 @@
                 <!-- Trivia Feature Section (5 Questions & Answers) -->
                 <div class="trivia-section">
                     <h3 class="trivia-heading">Mood Trivia</h3>
-                    <img src="assets/trivia.gif"
-                    class="trivia-image" alt="reply">
-                
+                    <img src="assets/trivia.gif" class="trivia-image" alt="reply">
+
                     <!-- Refresh Button -->
                     <button id="refresh-questions-btn">Refresh Questions</button>
-                
+
                     <!-- Trivia Container -->
                     <div class="trivia-container">
                         <!-- Question 1 -->
@@ -320,12 +320,13 @@
                                 <button class="answer-btn" data-correct="false">Bipolar Disorder</button>
                                 <button class="answer-btn" data-correct="true">Anxiety Disorder</button>
                                 <button class="answer-btn" data-correct="false">Schizophrenia</button>
-                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
+                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder
+                                    (OCD)</button>
                             </div>
                             <div class="trivia-result"></div>
                             <div class="correct" style="display: none;">Anxiety Disorder</div> <!-- Correct answer -->
                         </div>
-                
+
                         <!-- Question 2 -->
                         <div class="question-container" data-question-id="2">
                             <p class="trivia-question">2) What is the treatment for anxiety disorder?</p>
@@ -338,7 +339,7 @@
                             <div class="trivia-result"></div>
                             <div class="correct" style="display: none;">Therapy</div> <!-- Correct answer -->
                         </div>
-                
+
                         <!-- Question 3 -->
                         <div class="question-container" data-question-id="3">
                             <p class="trivia-question">3) What does PTSD stand for?</p>
@@ -349,9 +350,10 @@
                                 <button class="answer-btn" data-correct="false">Psychological Trauma Disorder</button>
                             </div>
                             <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">Post Traumatic Stress Disorder</div> <!-- Correct answer -->
+                            <div class="correct" style="display: none;">Post Traumatic Stress Disorder</div>
+                            <!-- Correct answer -->
                         </div>
-                
+
                         <!-- Question 4 -->
                         <div class="question-container" data-question-id="4">
                             <p class="trivia-question">4) What are common symptoms of depression?</p>
@@ -364,13 +366,14 @@
                             <div class="trivia-result"></div>
                             <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
                         </div>
-                
+
                         <!-- Question 5 -->
                         <div class="question-container" data-question-id="5">
                             <p class="trivia-question">5) Which of the following is a common anxiety disorder?</p>
                             <div class="trivia-answers">
                                 <button class="answer-btn" data-correct="false">Social Anxiety Disorder</button>
-                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
+                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder
+                                    (OCD)</button>
                                 <button class="answer-btn" data-correct="false">Generalized Anxiety Disorder</button>
                                 <button class="answer-btn" data-correct="true">All of the Above</button>
                             </div>
@@ -378,7 +381,7 @@
                             <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
                         </div>
                     </div>
-                </div>   
+                </div>
 
 
                 <div class="chat-icon-container">
@@ -506,7 +509,7 @@
             <!-- Next and Prev Buttons -->
             <button class="prev">Previous</button>
             <button class="next">Next</button>
-            
+
         </div>
     </section>
 
@@ -1528,7 +1531,8 @@
                             <div class="testimonials-text">
                                 <h3>Vivian Akan</h3>
                                 <p>"As a young female entrepreneur, MoodMate has changed my life for the better. It's
-                                    the perfect mental health companion. I am always excited to see the Mood Cat on my screen"</p>
+                                    the perfect mental health companion. I am always excited to see the Mood Cat on my
+                                    screen"</p>
                             </div>
                         </div>
                     </div>
@@ -1552,7 +1556,8 @@
                             <div class="testimonials-text">
                                 <h3>Temitope Shola</h3>
                                 <p>"Balancing my corporate job with personal goals was tough until I found MoodMate. It
-                                    has helped me manage my emotions and achieve my goals.The Mood Cat makes me giggle all the time"</p>
+                                    has helped me manage my emotions and achieve my goals.The Mood Cat makes me giggle
+                                    all the time"</p>
                             </div>
                         </div>
                     </div>
@@ -2000,7 +2005,7 @@
     </section>
     <!--#endregion BLOG-->
 
-  
+
 
     <!--#region MoodRanger-->
     <section id="ranger-section" class="ranger">
@@ -2074,6 +2079,78 @@
     </section>
 
     <!-- #endregion-->
+
+
+    <!--#region FAQS********************************-->
+    <section class="faq-section">
+        <h2 class="faq-title">Frequently Asked Questions</h2>
+
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">What is Moodmate?</button>
+                <div class="faq-answer">
+                    <p>Moodmate is a comprehensive mood tracking app designed to support users in monitoring their
+                        emotional well-being. By recording and analyzing moods over time, the app offers valuable
+                        insights, helping users recognize patterns and identify triggers that impact their emotions.
+                        Beyond mood tracking, Moodmate also provides round-the-clock support, connecting users with
+                        professional therapists through easy session bookings. Additionally, the app offers a wealth of
+                        resources and materials to help users manage their mental health more effectively..</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How do I log my mood?</button>
+                <div class="faq-answer">
+                    <p>To log your mood, please sign up as a registered user on the Moodmate app. Upon completing the
+                        sign-up process, you will gain access to the personalized Mood Pad feature. On your Mood Pad,
+                        you can select your current mood at any time and explore other mood-related features available
+                        in the app. Your mood data will be automatically generated based on your interactions with these
+                        features on the Mood Pad.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Is my data private?</button>
+                <div class="faq-answer">
+                    <p>Yes, your data is fully private and secure. We utilize encryption to safeguard your information,
+                        and it will remain accessible only to you unless you decide to share it. Additionally, we comply
+                        with all data privacy and protection regulations to ensure your information is handled
+                        responsibly..</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Can I track my moods over time?</button>
+                <div class="faq-answer">
+                    <p>Yes, Moodmate enables you to track your mood trends over time, providing graphs and insights that
+                        help you understand how your mood evolves. This information is displayed on your mood pad for
+                        easy access.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I Book an online session?</button>
+                <div class="faq-answer">
+                    <p>
+                        To book an online session, kindly log into your account, navigate to the features session, click
+                        the book-session button on the specific mood challenge you are facing, fill in the form and
+                        submit, and you will receive a mail notification for your session.
+                        </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How can I delete my account?</button>
+                <div class="faq-answer">
+                    <p>To delete your account or data, you must first be a registered user. Upon registration, a profile
+                        page will be created for you, where you can manage your account settings, mood data, and choose
+                        to delete or deactivate your account. Please note that this action is permanent and cannot be
+                        undone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--#endregion-->
+
     <!--#region CONTACT-->
     <!-- --------------------------------------------------------Contact Form------------------------------------------------- -->
     <section id="contact">
