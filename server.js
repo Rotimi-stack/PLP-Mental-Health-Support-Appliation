@@ -15,6 +15,7 @@ const session = require('express-session');
 const { createClient } = require('redis'); // Redis client
 
 // Initialize the GoogleGenerativeAI instance with your API key
+console.log('Gemini API Key:', process.env.Gemini_API_KEY);
 const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
 const app = express();
@@ -108,29 +109,24 @@ function authenticateToken(req, res, next) {
 
 //#region *********************************************************Gemini API Chat route
 app.post('/api/chat', async (req, res) => {
-    const { query } = req.body;
-
-    if (!query || query.trim() === '') {
-        return res.status(400).json({ error: 'Query cannot be empty' });
-    }
-
     try {
-        // Initialize the Gemini API
+        console.log('Incoming request body:', req.body);
+        const { query } = req.body;
+        if (!query || query.trim() === '') {
+            return res.status(400).json({ error: 'Query cannot be empty' });
+        }
+
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-
-        // Fetch the Gemini model
         const model = await genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-        // Generate content using the user's query
         const result = await model.generateContent(query);
-
-        // Respond with the generated content
         res.json({ response: result.response.text() });
     } catch (error) {
-        console.error('Error communicating with Gemini API:', error.message);
-        res.status(500).json({ error: 'Could not fetch data from Gemini API' });
+        console.error('Error in /api/chat:', error);
+        console.error('Error:', error.response?.data, error.stack);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 });
+
 
 app.post('/api/mood-input', async (req, res) => {
     const { moodInput } = req.body;
