@@ -157,11 +157,6 @@ app.post('/api/mood-input', async (req, res) => {
 //#endregion
 
 
-
-
-
-
-
 // Serve the index.html page
 app.get('/index', (req, res) => {
     const filePath = path.join(__dirname, 'index.html');
@@ -175,6 +170,7 @@ app.get('/index', (req, res) => {
     });
 });
 
+//{JESUS IS LORD}
 
 //#region GENERIC FUNCTION
 // Common reusable function to add data to a table
