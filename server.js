@@ -63,32 +63,6 @@ app.use((req, res, next) => {
   
 
 
-/*Load SSL certificate and key from environment variables
-let options;
-const key = process.env.SSL_KEY_CONTENT;
-const cert = process.env.SSL_CERT_CONTENT;
-
-console.log('SSL_KEY_CONTENT:', process.env.SSL_KEY_CONTENT);
-console.log('SSL_CERT_CONTENT:', process.env.SSL_CERT_CONTENT);
-
-
-if (key && cert) {
-  const options = {
-    key,
-    cert,
-    ciphers: 'ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256',
-  };
-
-  https.createServer(options, app).listen(3000, () => {
-    console.log('HTTPS Server running on https://localhost:3000');
-  });
-} else {
-  console.error('Error: Key and certificate are not provided.');
-  process.exit(1);
-}*/
-
-
-
  
   
 //authentication middleare that performs validation of the token
