@@ -1,68 +1,72 @@
 
-require('dotenv').config();
+require('dotenv').config(); // Load environment variables from .env file
 const http = require('http');
-const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const app = express();
-const bcrypt = require('bcryptjs');//For Hashing Password
+const bcrypt = require('bcryptjs'); // For Hashing Password
 const bodyParser = require('body-parser');
-const port = 3000;
-const multer = require('multer');
 const jwt = require('jsonwebtoken');
-const session = require('express-session');//Session Management
-const SECRET_KEY = process.env.JWT_SECRET; 
 const axios = require('axios');
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const mime = require('mime-types');
-const PORT = process.env.PORT || 3000;
+const express = require('express');
+const session = require('express-session');
+const { createClient } = require('redis'); // Redis client
+
 // Initialize the GoogleGenerativeAI instance with your API key
 const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
+const app = express();
+const port = 3000;
+const SECRET_KEY = process.env.JWT_SECRET;
+const PORT = process.env.PORT || 3000;
 
-
-const redis = require('redis');
-const { createClient } = require('redis');
-const session = require('express-session');
-const RedisStore = require('connect-redis')(session);
-
-const client = createClient({
-  legacyMode: true,
-  url: process.env.REDIS_URL || 'redis://localhost:6379',
+// Create Redis client with URL from the environment variables
+const redisClient = createClient({
+    url: process.env.REDIS_URL || 'redis://127.0.0.1:6379' // Fallback to local Redis if no REDIS_URL is set
 });
 
-client.connect().catch(console.error);
+// Connect to Redis and configure the session
+redisClient.connect().then(() => {
+    app.use(session({
+        store: new (require('connect-redis')(session))({ // Correctly reference RedisStore
+            client: redisClient, // Pass the Redis client to the session store
+        }),
+        secret: process.env.SESSION_SECRET || 'mood-key', // Secret key for sessions
+        resave: false,
+        saveUninitialized: true,
+    }));
 
-app.use(session({
-  store: new RedisStore({ client }),
-  secret: process.env.SESSION_SECRET || 'default-secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: process.env.NODE_ENV === 'production'
-  }
-}));
+    console.log("Connected to Redis successfully!");
+}).catch(err => {
+    console.log("Redis connection error: ", err);
+});
 
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
-
-
-
+// CORS headers
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 
 // Check user session
 app.get('/check-session', (req, res) => {
-    // Check if the user is logged in
     if (req.session.adminId) {
-        return res.json({ role: 'super_admin' }); // User is an admin
+        return res.json({ role: 'super_admin' });
     } else if (req.session.userId) {
-        return res.json({ role: 'user' }); // User is a patient
+        return res.json({ role: 'user' });
     } else {
-        return res.status(401).json({ message: 'Unauthorized' }); // User not logged in
+        return res.status(401).json({ message: 'Unauthorized' });
     }
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));// Body parser middleware to parse form data from POST requests
-app.use(bodyParser.json());
 
 
 // Use CORS and JSON middleware
