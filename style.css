@@ -2155,6 +2155,39 @@ input[type="range"] {
     color: white;
 }
 
+.mood-input-container {
+    margin-bottom: 20px;
+}
+
+#mood-input {
+    width: calc(100% - 100px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#send-mood-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.recommendation {
+    color: green;
+}
+
+#response-container {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color:black;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 .right-section {
     flex: 1;
     /* Both sections will take equal width */
@@ -2221,33 +2254,10 @@ input[type="range"] {
 }
 
 
-.recording-container button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.recording-container button:hover {
-    background-color: #45a049;
-}
 
-.audio-player {
-    margin-top: 10px;
-    width: 100%;
-}
 
-.response-container {
-    margin-top: 20px;
-}
 
-#recommendation-result {
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-}
 
 /* Adjust spacing for the sliders */
 .left-section .mood-slider {

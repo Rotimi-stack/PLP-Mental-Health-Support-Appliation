@@ -252,6 +252,44 @@ document.getElementById('send-btn').addEventListener('click', async () => {
     }
 });
     
+document.getElementById('send-mood-btn').addEventListener('click', async () => {
+    const moodInput = document.getElementById('mood-input').value.trim();
+    const responseContainer = document.getElementById('response-container');
+
+    if (!moodInput) {
+        responseContainer.innerHTML = `<p style="color: red;">Please enter your mood.</p>`;
+        return;
+    }
+
+    // Clear previous response
+    responseContainer.innerHTML = '<p>Analyzing your mood...</p>';
+
+    try {
+        const response = await fetch('/api/mood-input', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ moodInput }),
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+            responseContainer.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+        } else {
+            // Display Gemini's response and recommendation
+            responseContainer.innerHTML = `
+                <p> ${data.analysis}</p>
+                
+            `;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        responseContainer.innerHTML = `<p style="color: red;">An error occurred. Please try again later.</p>`;
+    }
+});
+
     
 
 

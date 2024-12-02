@@ -19,7 +19,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 
-
+// Initialize the GoogleGenerativeAI instance with your API key
+const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
 
 // Set up session management
@@ -89,7 +90,7 @@ function authenticateToken(req, res, next) {
 }
 
 
-// Gemini API Chat route
+//#region *********************************************************Gemini API Chat route
 app.post('/api/chat', async (req, res) => {
     const { query } = req.body;
 
@@ -114,6 +115,46 @@ app.post('/api/chat', async (req, res) => {
         res.status(500).json({ error: 'Could not fetch data from Gemini API' });
     }
 });
+
+app.post('/api/mood-input', async (req, res) => {
+    const { moodInput } = req.body;
+
+    try {
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const result = await model.generateContent(
+            `Analyze this mood: "${moodInput}" and provide a personalized recommendation.`
+        );
+
+        const analysisText = result.response.text(); // Get Gemini's response
+
+        // Example processing: Convert analysis into HTML-friendly format
+        const formattedAnalysis = analysisText
+            .replace(/\*{2}(.*?)\*{2}/g, '<strong>$1</strong>') // Bold for **text**
+            .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italics for *text*
+            .replace(/\n/g, '<p></p>'); // Paragraph breaks on newline
+
+        // Optionally, handle lists (if Gemini returns something like bullets or numbers)
+        // Replace bullets or numbers with <ul> or <ol>
+        const formattedResponse = `
+            <p><strong>MoodMate Analysis:</strong></p>
+            <p>${formattedAnalysis}</p>
+            <p><strong>Recommendation:</strong></p>
+            <ul>
+                <li>Take some time for self-reflection. Journaling can be helpful...</li>
+                <li>Practice stress-reducing techniques, such as deep breathing...</li>
+                <li>Talk to someone you trust – a friend, family member...</li>
+            </ul>
+        `;
+
+        res.json({ analysis: formattedResponse });
+    } catch (error) {
+        console.error('Error analyzing mood:', error.message);
+        res.status(500).json({ error: 'Failed to analyze mood.' });
+    }
+});
+
+
+//#endregion
 
 
 
