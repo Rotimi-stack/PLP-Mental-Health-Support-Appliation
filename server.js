@@ -17,8 +17,9 @@ const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const mime = require('mime-types');
 const PORT = process.env.PORT || 3000;
-const RedisStore = require('connect-redis')(session);
 const redis = require('redis');
+const RedisStore = require('connect-redis')(session);
+
 
 
 // Initialize the GoogleGenerativeAI instance with your API key
