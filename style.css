@@ -1931,8 +1931,8 @@ h2 {
     width: 17%;
     max-width: 500px;
     text-align: center;
-    background-color: rgb(158, 239, 158);
-    padding: 10px;
+    background-color: grey;
+    padding: 2px 5px 5px 5px;
     border-radius: 5px;
     margin: 0 auto 20px auto;
     /* Center the div and add margin */
@@ -1942,7 +1942,7 @@ h2 {
 .check-heading {
     font-size: 34px;
     margin: 0;
-    color: black;
+    color: white;
     line-height: 1.2;
 }
 

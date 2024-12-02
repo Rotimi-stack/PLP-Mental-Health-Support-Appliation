@@ -223,6 +223,192 @@
 
     <!-- #endregion-->
 
+  <!--#region CHECK SECTION-->
+    <!----------------------------------------------------------------CHECK SECTION--------------------------------------------------->
+    <section id="check">
+        <div class="check-heading-container">
+            <h2 class="check-heading">Self Check</h2>
+        </div>
+        <p class="slider-instruction">Move Mood Slider to get recommendations</p>
+        <div class="self-check-container">
+            <!-- Left Section: Mood Sliders -->
+
+            <div class="left-section">
+                <!-- Slider for Anger Mood -->
+                <div class="mood-slider">
+                    <p>Anger Mood: <span class="moodValue">0</span></p>
+                    <input type="range" class="moodSlider" min="0" max="10" value="0"
+                        title="Adjust your Anger mood level" />
+                    <div class="moodBarContainer">
+                        <div class="moodBar"></div>
+                    </div>
+                    <div class="recommendation"></div>
+                </div>
+
+                <!-- Slider for Anxiety Mood -->
+                <div class="mood-slider">
+                    <p>Anxiety Mood: <span class="moodValue">0</span></p>
+                    <input type="range" class="moodSlider" min="0" max="10" value="0"
+                        title="Adjust your Anxiety mood level" />
+                    <div class="moodBarContainer">
+                        <div class="moodBar"></div>
+                    </div>
+                    <div class="recommendation"></div>
+                </div>
+
+                <!-- Slider for Panic Attack Mood -->
+                <div class="mood-slider">
+                    <p>Panic Attack Mood: <span class="moodValue">0</span></p>
+                    <input type="range" class="moodSlider" min="0" max="10" value="0"
+                        title="Adjust your Panic Attack mood level" />
+                    <div class="moodBarContainer">
+                        <div class="moodBar"></div>
+                    </div>
+                    <div class="recommendation"></div>
+                </div>
+
+                <!-- Slider for Depression Mood -->
+                <div class="mood-slider">
+                    <p>Depression Mood: <span class="moodValue">0</span></p>
+                    <input type="range" class="moodSlider" min="0" max="10" value="0"
+                        title="Adjust your Depression mood level" />
+                    <div class="moodBarContainer">
+                        <div class="moodBar"></div>
+                    </div>
+                    <div class="recommendation"></div>
+                </div>
+
+                <!-- Slider for Fearful Mood -->
+                <div class="mood-slider">
+                    <p>Fearful Mood: <span class="moodValue">0</span></p>
+                    <input type="range" class="moodSlider" min="0" max="10" value="0"
+                        title="Adjust your Fear mood level" />
+                    <div class="moodBarContainer">
+                        <div class="moodBar"></div>
+                    </div>
+                    <div class="recommendation"></div>
+                </div>
+
+                <div class="mood-input-container">
+                    <label for="mood-input">Input Your Mood:</label>
+                    <input type="text" id="mood-input" placeholder="e.g., I feel overwhelmed with work, what should i do?" />
+                    <button id="send-mood-btn">Send</button>
+                </div>
+                <div class="response-container" id="response-container">
+                    <!-- Gemini's response and recommendations will be displayed here -->
+                </div>
+            </div>
+
+            <!-- Right Section: Chat Icon and Chat Container -->
+            <div class="right-section">
+
+                <!-- Trivia Feature Section (5 Questions & Answers) -->
+                <div class="trivia-section">
+                    <h3 class="trivia-heading">Mood Trivia</h3>
+                    <img src="assets/trivia.gif"
+                    class="trivia-image" alt="reply">
+                
+                    <!-- Refresh Button -->
+                    <button id="refresh-questions-btn">Refresh Questions</button>
+                
+                    <!-- Trivia Container -->
+                    <div class="trivia-container">
+                        <!-- Question 1 -->
+                        <div class="question-container" data-question-id="1">
+                            <p class="trivia-question">1) What is the most common mental health disorder?</p>
+                            <div class="trivia-answers">
+                                <button class="answer-btn" data-correct="false">Bipolar Disorder</button>
+                                <button class="answer-btn" data-correct="true">Anxiety Disorder</button>
+                                <button class="answer-btn" data-correct="false">Schizophrenia</button>
+                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
+                            </div>
+                            <div class="trivia-result"></div>
+                            <div class="correct" style="display: none;">Anxiety Disorder</div> <!-- Correct answer -->
+                        </div>
+                
+                        <!-- Question 2 -->
+                        <div class="question-container" data-question-id="2">
+                            <p class="trivia-question">2) What is the treatment for anxiety disorder?</p>
+                            <div class="trivia-answers">
+                                <button class="answer-btn" data-correct="false">Medication</button>
+                                <button class="answer-btn" data-correct="true">Therapy</button>
+                                <button class="answer-btn" data-correct="false">Rest</button>
+                                <button class="answer-btn" data-correct="false">Surgery</button>
+                            </div>
+                            <div class="trivia-result"></div>
+                            <div class="correct" style="display: none;">Therapy</div> <!-- Correct answer -->
+                        </div>
+                
+                        <!-- Question 3 -->
+                        <div class="question-container" data-question-id="3">
+                            <p class="trivia-question">3) What does PTSD stand for?</p>
+                            <div class="trivia-answers">
+                                <button class="answer-btn" data-correct="true">Post Traumatic Stress Disorder</button>
+                                <button class="answer-btn" data-correct="false">Post Terminated Stress Disorder</button>
+                                <button class="answer-btn" data-correct="false">Public Trauma Stress Disorder</button>
+                                <button class="answer-btn" data-correct="false">Psychological Trauma Disorder</button>
+                            </div>
+                            <div class="trivia-result"></div>
+                            <div class="correct" style="display: none;">Post Traumatic Stress Disorder</div> <!-- Correct answer -->
+                        </div>
+                
+                        <!-- Question 4 -->
+                        <div class="question-container" data-question-id="4">
+                            <p class="trivia-question">4) What are common symptoms of depression?</p>
+                            <div class="trivia-answers">
+                                <button class="answer-btn" data-correct="false">Fatigue</button>
+                                <button class="answer-btn" data-correct="false">Sadness</button>
+                                <button class="answer-btn" data-correct="false">Hopelessness</button>
+                                <button class="answer-btn" data-correct="true">All of the Above</button>
+                            </div>
+                            <div class="trivia-result"></div>
+                            <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
+                        </div>
+                
+                        <!-- Question 5 -->
+                        <div class="question-container" data-question-id="5">
+                            <p class="trivia-question">5) Which of the following is a common anxiety disorder?</p>
+                            <div class="trivia-answers">
+                                <button class="answer-btn" data-correct="false">Social Anxiety Disorder</button>
+                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
+                                <button class="answer-btn" data-correct="false">Generalized Anxiety Disorder</button>
+                                <button class="answer-btn" data-correct="true">All of the Above</button>
+                            </div>
+                            <div class="trivia-result"></div>
+                            <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
+                        </div>
+                    </div>
+                </div>   
+
+
+                <div class="chat-icon-container">
+                    <p class="chat-text">How are you feeling today? Ask me about Mental Health!</p>
+
+                    <!-- Chat Icon -->
+                    <div id="chat-icon" class="chat-icon">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                </div>
+
+                <!-- Chat Container -->
+                <div class="chat-container" id="chat-container" style="display: none;">
+                    <div class="chat-header">
+                        <h3>Chat</h3>
+                        <span id="close-chat" class="close-btn">&times;</span>
+                    </div>
+                    <div class="chat-box" id="chat-box">
+                        <!-- Chat messages will be displayed here -->
+                    </div>
+                    <input type="text" id="chat-input" placeholder="Ask Me about Mental Health..." />
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--#endregion CHECK-->
 
     <!--#region Article-->
     <!----------------------------------------------------------- Article Section -------------------------------------------------------->
@@ -1814,192 +2000,7 @@
     </section>
     <!--#endregion BLOG-->
 
-    <!--#region CHECK SECTION-->
-    <!----------------------------------------------------------------CHECK SECTION--------------------------------------------------->
-    <section id="check">
-        <div class="check-heading-container">
-            <h2 class="check-heading">Self Check</h2>
-        </div>
-        <p class="slider-instruction">Move Mood Slider to get recommendations</p>
-        <div class="self-check-container">
-            <!-- Left Section: Mood Sliders -->
-
-            <div class="left-section">
-                <!-- Slider for Anger Mood -->
-                <div class="mood-slider">
-                    <p>Anger Mood: <span class="moodValue">0</span></p>
-                    <input type="range" class="moodSlider" min="0" max="10" value="0"
-                        title="Adjust your Anger mood level" />
-                    <div class="moodBarContainer">
-                        <div class="moodBar"></div>
-                    </div>
-                    <div class="recommendation"></div>
-                </div>
-
-                <!-- Slider for Anxiety Mood -->
-                <div class="mood-slider">
-                    <p>Anxiety Mood: <span class="moodValue">0</span></p>
-                    <input type="range" class="moodSlider" min="0" max="10" value="0"
-                        title="Adjust your Anxiety mood level" />
-                    <div class="moodBarContainer">
-                        <div class="moodBar"></div>
-                    </div>
-                    <div class="recommendation"></div>
-                </div>
-
-                <!-- Slider for Panic Attack Mood -->
-                <div class="mood-slider">
-                    <p>Panic Attack Mood: <span class="moodValue">0</span></p>
-                    <input type="range" class="moodSlider" min="0" max="10" value="0"
-                        title="Adjust your Panic Attack mood level" />
-                    <div class="moodBarContainer">
-                        <div class="moodBar"></div>
-                    </div>
-                    <div class="recommendation"></div>
-                </div>
-
-                <!-- Slider for Depression Mood -->
-                <div class="mood-slider">
-                    <p>Depression Mood: <span class="moodValue">0</span></p>
-                    <input type="range" class="moodSlider" min="0" max="10" value="0"
-                        title="Adjust your Depression mood level" />
-                    <div class="moodBarContainer">
-                        <div class="moodBar"></div>
-                    </div>
-                    <div class="recommendation"></div>
-                </div>
-
-                <!-- Slider for Fearful Mood -->
-                <div class="mood-slider">
-                    <p>Fearful Mood: <span class="moodValue">0</span></p>
-                    <input type="range" class="moodSlider" min="0" max="10" value="0"
-                        title="Adjust your Fear mood level" />
-                    <div class="moodBarContainer">
-                        <div class="moodBar"></div>
-                    </div>
-                    <div class="recommendation"></div>
-                </div>
-
-                <div class="mood-input-container">
-                    <label for="mood-input">Input Your Mood:</label>
-                    <input type="text" id="mood-input" placeholder="e.g., I feel overwhelmed with work, what should i do?" />
-                    <button id="send-mood-btn">Send</button>
-                </div>
-                <div class="response-container" id="response-container">
-                    <!-- Gemini's response and recommendations will be displayed here -->
-                </div>
-            </div>
-
-            <!-- Right Section: Chat Icon and Chat Container -->
-            <div class="right-section">
-
-                <!-- Trivia Feature Section (5 Questions & Answers) -->
-                <div class="trivia-section">
-                    <h3 class="trivia-heading">Mood Trivia</h3>
-                    <img src="assets/trivia.gif"
-                    class="trivia-image" alt="reply">
-                
-                    <!-- Refresh Button -->
-                    <button id="refresh-questions-btn">Refresh Questions</button>
-                
-                    <!-- Trivia Container -->
-                    <div class="trivia-container">
-                        <!-- Question 1 -->
-                        <div class="question-container" data-question-id="1">
-                            <p class="trivia-question">1) What is the most common mental health disorder?</p>
-                            <div class="trivia-answers">
-                                <button class="answer-btn" data-correct="false">Bipolar Disorder</button>
-                                <button class="answer-btn" data-correct="true">Anxiety Disorder</button>
-                                <button class="answer-btn" data-correct="false">Schizophrenia</button>
-                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
-                            </div>
-                            <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">Anxiety Disorder</div> <!-- Correct answer -->
-                        </div>
-                
-                        <!-- Question 2 -->
-                        <div class="question-container" data-question-id="2">
-                            <p class="trivia-question">2) What is the treatment for anxiety disorder?</p>
-                            <div class="trivia-answers">
-                                <button class="answer-btn" data-correct="false">Medication</button>
-                                <button class="answer-btn" data-correct="true">Therapy</button>
-                                <button class="answer-btn" data-correct="false">Rest</button>
-                                <button class="answer-btn" data-correct="false">Surgery</button>
-                            </div>
-                            <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">Therapy</div> <!-- Correct answer -->
-                        </div>
-                
-                        <!-- Question 3 -->
-                        <div class="question-container" data-question-id="3">
-                            <p class="trivia-question">3) What does PTSD stand for?</p>
-                            <div class="trivia-answers">
-                                <button class="answer-btn" data-correct="true">Post Traumatic Stress Disorder</button>
-                                <button class="answer-btn" data-correct="false">Post Terminated Stress Disorder</button>
-                                <button class="answer-btn" data-correct="false">Public Trauma Stress Disorder</button>
-                                <button class="answer-btn" data-correct="false">Psychological Trauma Disorder</button>
-                            </div>
-                            <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">Post Traumatic Stress Disorder</div> <!-- Correct answer -->
-                        </div>
-                
-                        <!-- Question 4 -->
-                        <div class="question-container" data-question-id="4">
-                            <p class="trivia-question">4) What are common symptoms of depression?</p>
-                            <div class="trivia-answers">
-                                <button class="answer-btn" data-correct="false">Fatigue</button>
-                                <button class="answer-btn" data-correct="false">Sadness</button>
-                                <button class="answer-btn" data-correct="false">Hopelessness</button>
-                                <button class="answer-btn" data-correct="true">All of the Above</button>
-                            </div>
-                            <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
-                        </div>
-                
-                        <!-- Question 5 -->
-                        <div class="question-container" data-question-id="5">
-                            <p class="trivia-question">5) Which of the following is a common anxiety disorder?</p>
-                            <div class="trivia-answers">
-                                <button class="answer-btn" data-correct="false">Social Anxiety Disorder</button>
-                                <button class="answer-btn" data-correct="false">Obsessive Compulsive Disorder (OCD)</button>
-                                <button class="answer-btn" data-correct="false">Generalized Anxiety Disorder</button>
-                                <button class="answer-btn" data-correct="true">All of the Above</button>
-                            </div>
-                            <div class="trivia-result"></div>
-                            <div class="correct" style="display: none;">All of the Above</div> <!-- Correct answer -->
-                        </div>
-                    </div>
-                </div>   
-
-
-                <div class="chat-icon-container">
-                    <p class="chat-text">How are you feeling today? Ask me about Mental Health!</p>
-
-                    <!-- Chat Icon -->
-                    <div id="chat-icon" class="chat-icon">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                </div>
-
-                <!-- Chat Container -->
-                <div class="chat-container" id="chat-container" style="display: none;">
-                    <div class="chat-header">
-                        <h3>Chat</h3>
-                        <span id="close-chat" class="close-btn">&times;</span>
-                    </div>
-                    <div class="chat-box" id="chat-box">
-                        <!-- Chat messages will be displayed here -->
-                    </div>
-                    <input type="text" id="chat-input" placeholder="Ask Me about Mental Health..." />
-                    <button id="send-btn">Send</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!--#endregion CHECK-->
+  
 
     <!--#region MoodRanger-->
     <section id="ranger-section" class="ranger">

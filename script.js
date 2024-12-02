@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelector('.prev').addEventListener('click', () => changeSlide(-1));
     document.querySelector('.next').addEventListener('click', () => changeSlide(1));
-    
+
 
     resetAutoSlide();
     /*#endregion*/
@@ -171,6 +171,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+ 
+
+
     document.getElementById('send-btn').addEventListener('click', async () => {
         const chatInput = document.getElementById('chat-input');
         const chatBox = document.getElementById('chat-box');
@@ -199,9 +202,17 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.error) {
                 chatBox.innerHTML += `<div class="bot-message">Sorry, I couldn't process your request.</div>`;
             } else {
-                // Display Gemini API's response
+                // Format the Gemini API response
                 const apiResponse = data.response || 'Here is the information you requested!';
-                chatBox.innerHTML += `<div class="bot-message">${apiResponse}</div>`;
+    
+                // Format text by adding bold and italics where applicable
+                const formattedResponse = apiResponse
+                    .replace(/\*{2}(.*?)\*{2}/g, '<strong>$1</strong>')  // Bold for **text**
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')              // Italics for *text*
+                    .replace(/\n/g, '<p></p>');                         // Paragraph breaks on newline
+    
+                // Display the formatted response
+                chatBox.innerHTML += `<div class="bot-message">${formattedResponse}</div>`;
             }
     
             // Scroll to the bottom of the chat box
@@ -211,90 +222,47 @@ document.addEventListener("DOMContentLoaded", function () {
             chatBox.innerHTML += `<div class="bot-message">An error occurred. Please try again later.</div>`;
         }
     });
-document.getElementById('send-btn').addEventListener('click', async () => {
-    const chatInput = document.getElementById('chat-input');
-    const chatBox = document.getElementById('chat-box');
-    const userMessage = chatInput.value.trim();
+    
 
-    if (userMessage === '') return;
+    document.getElementById('send-mood-btn').addEventListener('click', async () => {
+        const moodInput = document.getElementById('mood-input').value.trim();
+        const responseContainer = document.getElementById('response-container');
 
-    // Display user's message in the chatbox
-    chatBox.innerHTML += `<div class="user-message">${userMessage}</div>`;
-
-    // Clear the input
-    chatInput.value = '';
-
-    try {
-        // Send the query to the backend
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ query: userMessage }),
-        });
-
-        const data = await response.json();
-
-        if (data.error) {
-            chatBox.innerHTML += `<div class="bot-message">Sorry, I couldn't process your request.</div>`;
-        } else {
-            // Display Gemini API's response
-            const apiResponse = data.response || 'Here is the information you requested!';
-            chatBox.innerHTML += `<div class="bot-message">${apiResponse}</div>`;
+        if (!moodInput) {
+            responseContainer.innerHTML = `<p style="color: red;">Please enter your mood.</p>`;
+            return;
         }
 
-        // Scroll to the bottom of the chat box
-        chatBox.scrollTop = chatBox.scrollHeight;
-    } catch (error) {
-        console.error('Error communicating with the backend:', error);
-        chatBox.innerHTML += `<div class="bot-message">An error occurred. Please try again later.</div>`;
-    }
-});
-    
-document.getElementById('send-mood-btn').addEventListener('click', async () => {
-    const moodInput = document.getElementById('mood-input').value.trim();
-    const responseContainer = document.getElementById('response-container');
+        // Clear previous response
+        responseContainer.innerHTML = '<p>Analyzing your mood...</p>';
 
-    if (!moodInput) {
-        responseContainer.innerHTML = `<p style="color: red;">Please enter your mood.</p>`;
-        return;
-    }
+        try {
+            const response = await fetch('/api/mood-input', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ moodInput }),
+            });
 
-    // Clear previous response
-    responseContainer.innerHTML = '<p>Analyzing your mood...</p>';
+            const data = await response.json();
 
-    try {
-        const response = await fetch('/api/mood-input', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ moodInput }),
-        });
-
-        const data = await response.json();
-
-        if (data.error) {
-            responseContainer.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
-        } else {
-            // Display Gemini's response and recommendation
-            responseContainer.innerHTML = `
+            if (data.error) {
+                responseContainer.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+            } else {
+                // Display Gemini's response and recommendation
+                responseContainer.innerHTML = `
                 <p> ${data.analysis}</p>
                 
             `;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            responseContainer.innerHTML = `<p style="color: red;">An error occurred. Please try again later.</p>`;
         }
-    } catch (error) {
-        console.error('Error:', error);
-        responseContainer.innerHTML = `<p style="color: red;">An error occurred. Please try again later.</p>`;
-    }
-});
-
-    
+    });
 
 
-
-   
 
     document.getElementById("chat-icon").addEventListener("click", function () {
         const chatContainer = document.getElementById("chat-container");
@@ -316,10 +284,10 @@ document.getElementById('send-mood-btn').addEventListener('click', async () => {
         button.addEventListener('click', function () {
             // Find the trivia container for the current question
             const triviaContainer = this.closest('.trivia-container');
-    
+
             // Select the result container
             const resultContainer = triviaContainer.querySelector('.trivia-result');
-    
+
             // Check if the clicked button is correct
             if (this.dataset.correct === "true") {
                 resultContainer.textContent = "Correct! You are in Contol Champ";  // Display "Correct!" if the answer is right
@@ -330,8 +298,8 @@ document.getElementById('send-mood-btn').addEventListener('click', async () => {
             }
         });
     });
-    
-    
+
+
     // Array of all the questions and answers
     const allQuestions = [
         {
@@ -344,7 +312,7 @@ document.getElementById('send-mood-btn').addEventListener('click', async () => {
             ],
             correctAnswer: "😊 Anxiety Disorder"
         },
-        
+
         {
             question: "What is the treatment for anxiety disorder?",
             answers: [
@@ -687,7 +655,7 @@ document.getElementById('send-mood-btn').addEventListener('click', async () => {
                     resultContainer.textContent = "Oops Wrong! Try again";
                     resultContainer.style.color = 'red';
                 }
-               
+
             });
         });
     }
