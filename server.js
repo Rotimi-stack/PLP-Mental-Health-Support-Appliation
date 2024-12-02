@@ -14,64 +14,12 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const session = require('express-session');//Session Management
 const SECRET_KEY = process.env.JWT_SECRET; 
-
-const ffmpeg = require('fluent-ffmpeg');
-const convertAudio = (inputFile, outputFile) =>
-    new Promise((resolve, reject) => {
-        ffmpeg(inputFile)
-            .audioChannels(1)
-            .audioFrequency(16000)
-            .format('wav')
-            .on('end', () => resolve(outputFile))
-            .on('error', reject)
-            .save(outputFile);
-    });
-
-const vader = require('vader-sentiment');
-
-// Multer setup for handling audio uploads
-const upload = multer({ dest: 'uploads/' });
-const { IamAuthenticator } = require('ibm-watson/auth');
-const SpeechToText = require('ibm-watson/speech-to-text/v1');
-console.log(SpeechToText); // Log to see if it's a constructor or an object
-const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
+const axios = require('axios');
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 
 
-// Set up Multer for handling multipart/form-data (audio upload)
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './uploads');
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    },
-});
 
-// Set up NLU and Speech-to-Text clients
-const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
-    version: '2022-08-10',
-    authenticator: new IamAuthenticator({
-        apikey: 'hZS1KO68dFGVPjhUwNMLu5P6fB0AhqsxQAhgl_o0KxJ6',
-    }),
-    serviceUrl: 'https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/866e1779-44f3-4029-864f-8e2d761fe610',
-});
-const speechToText = new SpeechToText({
-    authenticator: new IamAuthenticator({
-        apikey: 'AdDJdHN8ajk3HfmzU2eeVGhOnoUyCSpljGwNcVrXgmAf',  // Make sure the API key is correct
-    }),
-    serviceUrl: 'https://api.eu-gb.speech-to-text.watson.cloud.ibm.com/instances/a657b89e-b781-4b1a-b8a8-b0dc98f66582'  // Ensure the service URL is correct
-});
-
-/* Test service initialization
-speechToText.listModels()
-    .then(response => {
-        console.log('Models available:', response.result);
-    })
-    .catch(error => {
-        console.error('Error listing models:', error);
-    });
-*/
 
 
 // Set up session management
@@ -141,91 +89,37 @@ function authenticateToken(req, res, next) {
 }
 
 
+// Gemini API Chat route
+app.post('/api/chat', async (req, res) => {
+    const { query } = req.body;
 
-
-
-// Endpoint for emotion analysis
-app.post('/analyze-emotion', (req, res) => {
-    const { text } = req.body;
-    if (!text) {
-        return res.status(400).json({ error: 'Text is required' });
+    if (!query || query.trim() === '') {
+        return res.status(400).json({ error: 'Query cannot be empty' });
     }
-    // Dummy emotion analysis for testing
-    const emotion = { joy: 0.9, sadness: 0.1 };
-    res.json({ emotion });
+
+    try {
+        // Initialize the Gemini API
+        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+        // Fetch the Gemini model
+        const model = await genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+        // Generate content using the user's query
+        const result = await model.generateContent(query);
+
+        // Respond with the generated content
+        res.json({ response: result.response.text() });
+    } catch (error) {
+        console.error('Error communicating with Gemini API:', error.message);
+        res.status(500).json({ error: 'Could not fetch data from Gemini API' });
+    }
 });
 
 
-// Upload Audio Endpoint
-app.post('/upload-audio', upload.single('audio'), async (req, res) => {
-    const inputPath = req.file.path;
-    const outputPath = `uploads/${req.file.filename}-processed.wav`;
 
-    try {
-        // Use FFmpeg to convert audio to LPCM format
-        await new Promise((resolve, reject) => {
-            ffmpeg(inputPath)
-                .audioCodec('pcm_s16le') // PCM encoding
-                .audioChannels(1) // Mono channel
-                .audioFrequency(16000) // 16 kHz sample rate
-                .format('wav') // Output format
-                .on('end', resolve)
-                .on('error', reject)
-                .save(outputPath);
-        });
 
-        console.log('Audio file successfully processed with FFmpeg');
 
-        // Send the processed audio for transcription
-        const transcriptionResult = await transcribeAudio(outputPath);
 
-        res.status(200).json(transcriptionResult);
-    } catch (error) {
-        console.error('Error processing audio with FFmpeg:', error.message);
-        res.status(400).json({ error: 'Failed to process audio', details: error.message });
-    } finally {
-        // Clean up temporary files
-        fs.unlink(inputPath, () => { });
-        fs.unlink(outputPath, () => { });
-    }
-});
-
-/* Analyze Emotion Endpoint
-app.post('/analyze-emotion', async (req, res) => {
-    try {
-        const { text } = req.body;
-        const analyzeParams = {
-            text,
-            features: {
-                emotion: {},
-            },
-        };
-        const analysisResults = await naturalLanguageUnderstanding.analyze(analyzeParams);
-        const emotions = analysisResults.result.emotion.document.emotion;
-        res.json({ emotions });
-    } catch (error) {
-        console.error('Error analyzing emotion:', error);
-        res.status(500).send('Error analyzing emotion');
-    }
-});*/
-
-// Transcribe Audio Endpoint
-app.post('/transcribe-audio', upload.single('audio'), async (req, res) => {
-    try {
-        const audioFile = req.file;
-        const audioFileStream = fs.createReadStream(audioFile.path);
-        const recognizeParams = {
-            audio: audioFileStream,
-            contentType: 'audio/wav',
-            model: 'en-US_BroadbandModel',
-        };
-        const transcriptionResult = await speechToText.recognize(recognizeParams);
-        res.json(transcriptionResult);
-    } catch (error) {
-        console.error('Error transcribing audio:', error);
-        res.status(500).send('Error transcribing audio');
-    }
-});
 
 // Serve the index.html page
 app.get('/index', (req, res) => {
