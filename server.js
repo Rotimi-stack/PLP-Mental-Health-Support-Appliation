@@ -5,7 +5,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-//const db = require('./database'); 
 const app = express();
 const bcrypt = require('bcryptjs');//For Hashing Password
 const bodyParser = require('body-parser');
@@ -18,6 +17,8 @@ const axios = require('axios');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 const mime = require('mime-types');
 const PORT = process.env.PORT || 3000;
+const RedisStore = require('connect-redis')(session);
+const redis = require('redis');
 
 
 
@@ -26,13 +27,20 @@ const PORT = process.env.PORT || 3000;
 const genAI = new GoogleGenerativeAI(process.env.Gemini_API_KEY);
 
 
-// Set up session management
+
+const redisClient = redis.createClient({ url: process.env.REDIS_URL });
+redisClient.connect().catch(console.error);
+
 app.use(session({
-    secret: process.env.SESSION_SECRET, // Use the secret from .env
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true } // Set to true if using HTTPS
+    saveUninitialized: false,
+    cookie: { secure: true }
 }));
+
+
+
 
 
 // Check user session
@@ -169,36 +177,6 @@ app.get('/index', (req, res) => {
 });
 
 //{JESUS IS LORD}
-
-
-
-
-
-
-
-
-
-/*http.createServer((req, res) => {
-    const filePath = `.${req.url}`;
-    const mimeType = mime.lookup(filePath);
-  
-    fs.readFile(filePath, (err, data) => {
-      if (err) {
-        res.writeHead(404, {'Content-Type': 'text/plain'});
-        res.end('File not found!');
-      } else {
-        res.writeHead(200, {'Content-Type': mimeType || 'text/plain'});
-        res.end(data);
-      }
-    });
-  }).listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
-  });*/
-  
-
-  /*app.listen(3000, () => {
-    console.log('Server is running on https://localhost:3000/index');
-});*/
 
 
 
